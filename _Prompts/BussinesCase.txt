@@ -1,0 +1,90 @@
+INTRODUÇÃO
+
+VISÃO GERAL DA HOME EXPERIENCE
+
+A Home Experience é uma empresa de médio porte com escritório sediado no centro de São
+Paulo e fábrica no distrito industrial do mesmo estado. A empresa atua no ramo imobiliário
+desde a base até o acabamento, para entregar ao cliente a melhor experiência na construção ou
+reforma do seu imóvel. A infraestrutura da empresa ao todo conta com 249 funcionários
+divididos entre tarefas operacionais, comerciais e administrativas.
+
+OBJETIVO
+A Home Experience se preocupa muito com qualidade do serviço entregue ao seu cliente, e
+gostaria de monitorar melhor o seu quadro funcionários para ter melhor controle da rotatividade
+do pessoal, do custo da mão de obra, entre outras coisas.
+Foi realizada uma reunião entre os diretores da empresa, onde decidiram que o melhor caminho
+para este monitoramento, seria a construção de um relatório completo com base nas
+informações extraídas do ERP.
+Após definida a estratégia, a empresa designa a você a tarefa de construir o relatório
+considerando as seguintes premissas: o relatório deve ser dinâmico e de fácil acesso para
+todos os diretores da empresa, e deve analisar as contratações, demissões segmentadas em
+ativo, passivo e espontâneo, massa salarial, valores gastos com horas normais e horas extras,
+valor do absenteísmo, percentuais de turnover e tempo de retenção.
+Os diretores lhe deram a liberdade de fazer análises extras, e espera que você os surpreenda
+mostrando dados relevantes e que possam ter passado despercebidos nos últimos anos.
+Agora a missão está com você! Extraia as informações do ERP, analise a base de dados, mapeie
+o cenário e mãos à obra.
+1
+
+BASE DE DADOS
+
+A base de dados extraída do ERP contém as seguintes tabelas:
+● Fichas Financeiras dos meses de janeiro a junho de 2020, nesse relatório você
+encontrará informações da folha salarial da empresa com seus eventos (Horas Normais,
+Horas Extras, FGTS, Atraso, Atestado, etc) e o valor gasto em cada evento.
+● Tabela de funcionários, nela você encontrará informações inerentes ao registro dos
+funcionários, código, nome, cargo, data de admissão, escolaridade, salário, situação, etc.
+2
+
+ANÁLISES
+Nessa sessão de análises tem algumas perguntas para você responder para lhe auxiliar a
+entregar a análise completa conforme solicitado pelos gestores.
+ANÁLISES MACRO
+1. Em que ano a empresa fez a maior quantidade de contratações?
+2. Qual faixa etária tem a maior quantidade total de demissões?
+3. Em comparação com o ano de 2019, o headcount aumentou ou diminuiu em 2020?
+4. Quantas má contratações foram realizadas para o cargo de gestor?
+5. Qual o percentual de má contratações quando a faixa etária está entre 45 e 54 anos?
+6. Qual  o percentual de turnover demissional do ano de 2004?
+7. Qual a massa salarial dos gestores com escolaridade superior completo?
+8. Qual o valor total gasto com absenteísmo?
+9. Qual a maior causa do Absenteísmo?
+3
+10. Em que mês ocorreu o menor percentual de absenteísmo? Qual o percentual?
+11. Qual o valor total e o percentual de hora extra dos funcionários com escolaridade ensino
+médio?
+ANÁLISES EXTRAS
+1. Segmente o turnover em ativo, passivo e espontâneo para demonstrar ao gestor qual é a
+maior causa de afastamento.
+2. Segmente o tempo de retenção em 3 categorias: "Menor que 60 dias", "Entre 60 e 365
+dias" e "Maior que 365 dias", e demonstre ao gestor a maior retenção por sexo, faixa
+etária, ano e escolaridade.
+3. Avalie o que influencia a retenção dos funcionários por mais tempo.
+4. A empresa está preocupada com a equidade salarial dos seus colaboradores, por isso,
+faça o cálculo do leque salarial para demonstrar se essa equidade  existe ou não.
+5. Com base no índice de tecnicidade pode-se dizer que a empresa investe forte na
+contratação de quadros qualificados ou não?
+INFORMAÇÕES ADICIONAIS
+Colocamos alguns conceitos básicos para auxiliar no cálculo de alguns indicadores. A
+nomenclatura utilizada é a mesma dos campos presentes na base de dados disponibilizada.
+● Contratações = contagem funcionários contratados;
+● Demissões = contagem funcionários demitidos;
+● Headcount = quantidade de funcionários ativos no período;
+● Turnover Demissional = Demissões Período Atual / Headcount do Período Anterior;
+4
+● Má Contratações = Funcionários demitidos com menos de 60 dias;
+● Massa Salarial = soma do salário dos funcionários ativos;
+● Horas Normais = soma do valor das Horas Normais;
+● Horas Extras = soma do valor das Horas Extras;
+● % Horas Extras = Horas Extras / Horas Normais;
+● Absenteísmo = soma do valor dos eventos faltas, atrasos e atestados;
+● % Absenteísmo = Valor Absenteísmo / Valor Horas Normais;
+● Leque salarial = Maior Salário / Menor Salário
+● Índice de Tecnicidade = Número de Colaboradores com formação superior / Total de
+Colaboradores;
+● Para segmentar o turnover considere as seguintes diretrizes: Ativo (códigos 3, 4 e 14),
+Passivo (códigos 1, 2 e 13) e Espontâneo (demais códigos)
+
+
+Quero também, criar a Calendário no meu modelo. Crie e coloque todas as colunas que fizerem sentido pra análise, incluindo uma coluna de feriados nacionais brasileiros (pesquisa os feriados dos anos que tenho na base, incluindo os móveis como Carnaval e Páscoa). Depois conecta ela com as tabelas fato e cria uma hierarquia de datas.
+

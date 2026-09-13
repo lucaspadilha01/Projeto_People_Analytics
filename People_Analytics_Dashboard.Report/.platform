@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "People_Analytics_Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "da77079b-bf42-4472-a5dc-277e03ba7d3d"
+  }
+}

@@ -1,0 +1,20 @@
+relationship b00230a3-2392-4ff2-990a-06d115eecb08
+	joinOnDateBehavior: datePartOnly
+	fromColumn: BaseDados.' Mês Pag. '
+	toColumn: LocalDateTable_99a3733a-f6c9-406a-9169-6c4c9bf1383f.Date
+
+relationship c72e3314-6183-43ff-982a-aa2533b94878
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Funcionarios.'Data Admissão'
+	toColumn: LocalDateTable_06f30b67-cbb8-4da2-bb01-0f39d8347dbe.Date
+
+relationship 7d44ee2c-09a7-4d18-a360-18d06791f42e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Funcionarios.'Data Cargo'
+	toColumn: LocalDateTable_76724093-5ec1-4144-bd01-c887b8a8fef4.Date
+
+relationship 3b31beba-bea0-4192-bc42-f6cdd925acbf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Funcionarios.'Data Salário'
+	toColumn: LocalDateTable_3db60233-f338-4100-b13a-d48ae9318144.Date
+

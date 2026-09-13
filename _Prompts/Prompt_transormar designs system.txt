@@ -1,0 +1,33 @@
+Na raiz deste projeto tem a pasta `design-system-export`, um dump cru do Claude Design com o
+design system completo. Não é um pacote limpo: tem código de verdade, tem artefato interno da
+ferramenta, e provavelmente tem versões duplicadas do mesmo componente em pastas diferentes.
+Sua tarefa é triar, reorganizar tudo numa pasta nova `design-system`, incorporar ao projeto,
+deixar a documentação do repositório em ordem, e só no fim apagar `design-system-export`.
+
+Execute tudo de ponta a ponta sem pedir aprovação. Monte o plano internamente e siga com ele.
+Não me faça perguntas intermediárias, não pare para confirmar decisões, não espere ok em
+nenhum momento. Quando houver ambiguidade, tome a decisão mais conservadora — a que preserva o
+que já existe no projeto — e registre a escolha no relatório final. Só interrompa se algo
+impedir fisicamente a conclusão da tarefa.
+
+## 1. Triagem do dump
+Leia a pasta inteira antes de escrever qualquer coisa e classifique cada arquivo em:
+- canônico: a versão mais completa e recente de cada componente, tela, template, token,
+guideline e asset
+- derivado ou duplicado: versões antigas, exports aninhados, cópias do mesmo componente em
+pastas diferentes
+- interno da ferramenta: bundles, manifests, thumbnails, uploads e afins
+
+Quando o mesmo componente aparecer em mais de um lugar, compare de fato e escolha a versão com
+mais variantes e estados — não a primeira que encontrar. Só o grupo canônico entra no projeto.
+Anote os conflitos e a escolha de cada um para o relatório.
+
+Dois itens são fáceis de descartar por engano e não podem se perder: qualquer `DESIGN.md` no
+padrão Google Labs / Stitch, que é a fonte da verdade dos tokens e precisa ser resgatado mesmo
+que esteja numa subpasta; e qualquer config de lint de aderência ao design system, que deve ser
+integrada à config de lint do projeto.
+
+Preserve também os HTMLs de referência visual que existirem no dump. Não viram componente, mas
+eu quero continuar podendo abri-los no navegador depois que a pasta original for apagada — mova
+para dentro de `design-system`, em subpasta própria de referência, ajustando caminhos de assets
+para que continuem renderizando sozinhos.

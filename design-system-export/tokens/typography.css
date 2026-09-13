@@ -1,0 +1,8 @@
+:root{
+--text-display:600 44px/1.12 var(--font-sans);--text-h1:600 32px/1.2 var(--font-sans);--text-h2:600 24px/1.28 var(--font-sans);--text-h3:600 18px/1.35 var(--font-sans);--text-h4:600 15px/1.4 var(--font-sans);
+--text-body-lg:400 16px/1.55 var(--font-sans);--text-body-md:400 14px/1.55 var(--font-sans);--text-body-sm:400 13px/1.5 var(--font-sans);--text-caption:400 12px/1.45 var(--font-sans);--text-micro:500 11px/1.35 var(--font-sans);
+--text-metric-xl:600 40px/1.05 var(--font-sans);--text-metric-lg:600 28px/1.1 var(--font-sans);--text-metric-md:600 20px/1.15 var(--font-sans);
+--text-label:500 13px/1.35 var(--font-sans);--text-button:500 13px/1 var(--font-sans);
+--fw-regular:400;/* @kind font */--fw-medium:500;/* @kind font */--fw-semibold:600;/* @kind font */--fw-bold:700;/* @kind font */
+--tracking-tight:-0.015em;/* @kind font */--tracking-normal:0;/* @kind font */--tracking-wide:0.04em;/* @kind font */--tracking-caps:0.08em/* @kind font */
+}

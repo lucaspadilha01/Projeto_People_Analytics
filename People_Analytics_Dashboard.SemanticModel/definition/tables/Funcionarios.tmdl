@@ -1,0 +1,286 @@
+table Funcionarios
+	lineageTag: cd7b2a64-6a61-48fe-8427-2b997c3ad086
+
+	column 'Cód Funcionário'
+		dataType: int64
+		formatString: 0
+		lineageTag: ff322b39-a0e7-4d48-8d26-4a60cc6e4edd
+		summarizeBy: sum
+		sourceColumn: Cód Funcionário
+
+		annotation SummarizationSetBy = Automatic
+
+	column Funcionário
+		dataType: string
+		lineageTag: f21f5506-28ac-4a44-af70-a9c61f6e1222
+		summarizeBy: none
+		sourceColumn: Funcionário
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sexo
+		dataType: string
+		lineageTag: 75e3ade9-7909-45ef-8e6e-905fd65bb4c3
+		summarizeBy: none
+		sourceColumn: Sexo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Admissão'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 164c5f9d-6c73-4a5f-80e3-0db720700f95
+		summarizeBy: none
+		sourceColumn: Data Admissão
+
+		variation Variation
+			isDefault
+			relationship: c72e3314-6183-43ff-982a-aa2533b94878
+			defaultHierarchy: LocalDateTable_06f30b67-cbb8-4da2-bb01-0f39d8347dbe.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Cód Cargo'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8651efac-6e68-48fa-a974-30b510d69ada
+		summarizeBy: sum
+		sourceColumn: Cód Cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cargo
+		dataType: string
+		lineageTag: 774db058-f148-4856-be70-8357b1ba6dfb
+		summarizeBy: none
+		sourceColumn: Cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Cargo'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 40424f94-9360-475d-8133-9c7f43208283
+		summarizeBy: none
+		sourceColumn: Data Cargo
+
+		variation Variation
+			isDefault
+			relationship: 7d44ee2c-09a7-4d18-a360-18d06791f42e
+			defaultHierarchy: LocalDateTable_76724093-5ec1-4144-bd01-c887b8a8fef4.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Cód Escala'
+		dataType: int64
+		formatString: 0
+		lineageTag: 001b7ab2-44f4-458b-a484-367e001335af
+		summarizeBy: sum
+		sourceColumn: Cód Escala
+
+		annotation SummarizationSetBy = Automatic
+
+	column Escala
+		dataType: string
+		lineageTag: a9b48b1a-fa09-4dfc-92a3-e687b90c6b22
+		summarizeBy: none
+		sourceColumn: Escala
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cód C.Custo'
+		dataType: string
+		lineageTag: 1e6c0322-1659-4722-86cb-0045e5e4dee5
+		summarizeBy: none
+		sourceColumn: Cód C.Custo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Centro Custo'
+		dataType: string
+		lineageTag: 5859758e-7d76-4328-bca7-c4e6f9c3efe3
+		summarizeBy: none
+		sourceColumn: Centro Custo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cód T. Contrato'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7cfc148d-78b9-4630-9385-18a7c2d48721
+		summarizeBy: sum
+		sourceColumn: Cód T. Contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo Contrato'
+		dataType: string
+		lineageTag: 1d343035-a053-4459-bb61-fcfedf2dbd3a
+		summarizeBy: none
+		sourceColumn: Tipo Contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cód Estado Civil'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e45e4cd-063a-4fc2-9a7a-da45c0e5f395
+		summarizeBy: sum
+		sourceColumn: Cód Estado Civil
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Estado Civil'
+		dataType: string
+		lineageTag: 155491eb-1992-45b0-9768-e58bdc62e35d
+		summarizeBy: none
+		sourceColumn: Estado Civil
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cód Escolaridade'
+		dataType: int64
+		formatString: 0
+		lineageTag: 743a3783-42be-47c3-b74c-b324ae087f7f
+		summarizeBy: sum
+		sourceColumn: Cód Escolaridade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Escolaridade
+		dataType: string
+		lineageTag: 7c1d66fb-acca-4540-85e4-95c1fc8dde02
+		summarizeBy: none
+		sourceColumn: Escolaridade
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Nascimento'
+		dataType: string
+		lineageTag: 0118a954-583b-4dfa-bdd0-84201e69203c
+		summarizeBy: none
+		sourceColumn: Data Nascimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cód Nacionalidade'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b27faea-2799-4dbf-9787-286d26c55a4c
+		summarizeBy: sum
+		sourceColumn: Cód Nacionalidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nacionalidade
+		dataType: string
+		lineageTag: 4f279f16-83e9-4ef1-a15b-ad7a6682e729
+		summarizeBy: none
+		sourceColumn: Nacionalidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cód Raça'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a0d0595-4842-4111-9a48-3b7f402b3292
+		summarizeBy: sum
+		sourceColumn: Cód Raça
+
+		annotation SummarizationSetBy = Automatic
+
+	column Raça
+		dataType: string
+		lineageTag: 1a21885c-3d83-47a5-9904-cc592f1e5362
+		summarizeBy: none
+		sourceColumn: Raça
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Valor Salário'
+		dataType: double
+		lineageTag: 723f866b-9f57-41ab-871c-9a03596b69bc
+		summarizeBy: sum
+		sourceColumn: Valor Salário
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Data Salário'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 85ad8b48-f25c-47bf-8d75-e3855e96cb58
+		summarizeBy: none
+		sourceColumn: Data Salário
+
+		variation Variation
+			isDefault
+			relationship: 3b31beba-bea0-4192-bc42-f6cdd925acbf
+			defaultHierarchy: LocalDateTable_3db60233-f338-4100-b13a-d48ae9318144.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Cód Situação'
+		dataType: int64
+		formatString: 0
+		lineageTag: ba2259ba-5930-4a90-8520-f8007445263f
+		summarizeBy: sum
+		sourceColumn: Cód Situação
+
+		annotation SummarizationSetBy = Automatic
+
+	column Situação
+		dataType: string
+		lineageTag: b58cabbd-f38d-4cb5-8733-3ff0ccd02566
+		summarizeBy: none
+		sourceColumn: Situação
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Afastamento'
+		dataType: string
+		lineageTag: a8f3f0b5-1036-46f7-839f-d7a6b0f13c62
+		summarizeBy: none
+		sourceColumn: Data Afastamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cód Causa Afastamento'
+		dataType: int64
+		formatString: 0
+		lineageTag: fac73020-1ccd-43ee-9201-30fb309b7db8
+		summarizeBy: sum
+		sourceColumn: Cód Causa Afastamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Causa Afastamento'
+		dataType: string
+		lineageTag: 1f4f9609-bb8d-48b1-9dd1-66776f5caf7c
+		summarizeBy: none
+		sourceColumn: Causa Afastamento
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Planilha1 = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\lucas\OneDrive\Área de Trabalho\Analise_dados_google_MD\Projeto_People_Analytics\BaseDados\Funcionarios.xlsx"), null, true),
+				    Planilha1_Sheet = Fonte{[Item="Planilha1",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Planilha1_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Cód Funcionário", Int64.Type}, {"Funcionário", type text}, {"Sexo", type text}, {"Data Admissão", type date}, {"Cód Cargo", Int64.Type}, {"Cargo", type text}, {"Data Cargo", type date}, {"Cód Escala", Int64.Type}, {"Escala", type text}, {"Cód C.Custo", type text}, {"Centro Custo", type text}, {"Cód T. Contrato", Int64.Type}, {"Tipo Contrato", type text}, {"Cód Estado Civil", Int64.Type}, {"Estado Civil", type text}, {"Cód Escolaridade", Int64.Type}, {"Escolaridade", type text}, {"Data Nascimento", type any}, {"Cód Nacionalidade", Int64.Type}, {"Nacionalidade", type text}, {"Cód Raça", Int64.Type}, {"Raça", type text}, {"Valor Salário", type number}, {"Data Salário", type date}, {"Cód Situação", Int64.Type}, {"Situação", type text}, {"Data Afastamento", type any}, {"Cód Causa Afastamento", Int64.Type}, {"Causa Afastamento", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

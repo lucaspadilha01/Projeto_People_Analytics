@@ -1,0 +1,25 @@
+<!-- @dsCard group="Brand" viewport="700x240" name="Logo variants" subtitle="The supplied vector recoloured — on light, on violet, single-hue, and the bar mark" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>*{box-sizing:border-box}body{margin:0;font-family:var(--font-sans);background:var(--bg-page);color:var(--text-body)}a{color:var(--text-accent)}a:hover{color:var(--accent-strong)}.tile{border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:center;min-height:108px}.cap{font:var(--text-micro);font-weight:400;color:var(--text-muted);margin-top:7px;text-align:center}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const { Logo } = window.NexaFlowDesignSystem_fd0681;
+function Demo(){
+  return <div style={{padding:'18px 24px'}}>
+    <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12}}>
+      <div><div className="tile" style={{background:'var(--surface-card)',border:'1px solid var(--border-hairline)'}}><Logo height={62}/></div><div className="cap">Primary · on white</div></div>
+      <div><div className="tile" style={{background:'var(--surface-accent)'}}><Logo variant="reversed" height={62}/></div><div className="cap">Reversed · on violet</div></div>
+      <div><div className="tile" style={{background:'var(--surface-sunken)'}}><Logo variant="mono" height={62}/></div><div className="cap">Single-hue · print</div></div>
+      <div><div className="tile" style={{background:'var(--surface-card)',border:'1px solid var(--border-hairline)'}}><Logo variant="mark" height={44}/></div><div className="cap">Bar mark</div></div>
+    </div>
+    <div style={{font:'var(--text-caption)',fontFamily:'var(--font-sans)',color:'var(--text-muted)',marginTop:12}}>
+      Geometry is the supplied vector file verbatim — two rules, "HR", three bars, "ANALYTICS". Only the palette changed: bars carry a vertical <strong>violet-300 → violet-500 → violet-700</strong> gradient, rules a horizontal violet-300 → violet-500 → violet-300.
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>

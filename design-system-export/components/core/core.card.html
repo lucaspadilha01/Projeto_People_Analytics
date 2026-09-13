@@ -1,0 +1,55 @@
+<!-- @dsCard group="Components" viewport="700x330" name="Core controls" subtitle="Button, IconButton, Badge, Card, Input, Search, Avatar, toggles" -->
+<!doctype html><html><head><meta charset="utf-8"><title>Core</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>*{box-sizing:border-box}body{margin:0;font-family:var(--font-sans);background:var(--bg-page);color:var(--text-body)}a{color:var(--text-accent)}a:hover{color:var(--accent-strong)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.lbl{font:var(--text-micro);font-weight:400;color:var(--text-faint);width:100%;margin:2px 0 -4px}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body><div id="root" style="padding:16px 20px"></div>
+<script type="text/babel">
+const { Button, IconButton, Badge, Card, Input, SearchField, Avatar, AvatarGroup, Toggle, SegmentedToggle, Icon } = window.NexaFlowDesignSystem_fd0681;
+function Demo(){
+  const [on,setOn]=React.useState(true); const [mode,setMode]=React.useState('Light');
+  return <div style={{display:'flex',flexDirection:'column',gap:14}}>
+    <div className="lbl">Button — primary / secondary / soft / ghost / danger · sizes · disabled</div>
+    <div className="row">
+      <Button>Import Data</Button>
+      <Button variant="secondary">+ Add Project</Button>
+      <Button variant="soft">Review All</Button>
+      <Button variant="ghost">Cancel</Button>
+      <Button variant="danger" size="sm">Reject</Button>
+      <Button size="sm" variant="secondary">Add Change Order</Button>
+      <Button size="lg" iconLeft={<Icon name="plus" size={14} color="currentColor"/>}>New project</Button>
+      <Button disabled>Disabled</Button>
+      <Button pill variant="soft" size="sm">Dashboard</Button>
+    </div>
+    <div className="lbl">IconButton · Badge</div>
+    <div className="row">
+      <IconButton label="Messages"><Icon name="message" size={16}/></IconButton>
+      <IconButton label="Alerts" badge><Icon name="bell" size={16}/></IconButton>
+      <IconButton label="Theme" tone="tinted"><Icon name="sun" size={16}/></IconButton>
+      <IconButton label="Download" tone="accent"><Icon name="download" size={16}/></IconButton>
+      <Badge>Neutral</Badge><Badge tone="accent">Design</Badge><Badge tone="ok" dot>On-track</Badge>
+      <Badge tone="warn">Pending</Badge><Badge tone="risk">Delayed</Badge><Badge tone="info">Material</Badge>
+    </div>
+    <div className="lbl">Input · SearchField · Toggle · SegmentedToggle · Avatars</div>
+    <div className="row" style={{alignItems:'flex-end'}}>
+      <Input label="Project name" defaultValue="Residential Villa – Phase 2" style={{width:230}}/>
+      <SearchField style={{width:210}}/>
+      <Toggle checked={on} onChange={setOn} label="Email digests"/>
+      <SegmentedToggle options={[{value:'Dark',label:'Dark',icon:<Icon name="moon" size={13} color="currentColor"/>},{value:'Light',label:'Light',icon:<Icon name="sun" size={13} color="currentColor"/>}]} value={mode} onChange={setMode}/>
+      <AvatarGroup people={[{name:'Amit Patel'},{name:'Priya Sharma'},{name:'Rajesh Kumar'},{name:'Sarah Chen'},{name:'Dev Rao'}]}/>
+      <Avatar name="Sarah Chen" size={34}/>
+    </div>
+    <div className="lbl">Card — plain / tint / accent / sunken</div>
+    <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12}}>
+      <Card title="Plain" meta="default panel"><div style={{height:26,background:'var(--surface-sunken)',borderRadius:6}}/></Card>
+      <Card tone="tint" title="Tint">Violet-50 ground</Card>
+      <Card tone="accent" title="Accent">One per screen</Card>
+      <Card tone="sunken" title="Sunken">Inset block</Card>
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>

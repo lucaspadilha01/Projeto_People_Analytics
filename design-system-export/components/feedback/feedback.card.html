@@ -1,0 +1,41 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Feedback & list items" subtitle="Alerts, upload rows, approvals, tasks, vendor payments, insight tiles" -->
+<!doctype html><html><head><meta charset="utf-8"><title>Feedback</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>*{box-sizing:border-box}body{margin:0;font-family:var(--font-sans);background:var(--bg-page);color:var(--text-body)}a{color:var(--text-accent)}a:hover{color:var(--accent-strong)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.lbl{font:var(--text-micro);font-weight:400;color:var(--text-faint);width:100%;margin:2px 0 -4px}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body><div id="root" style="padding:16px 20px"></div>
+<script type="text/babel">
+const { AlertBanner, FileProgressRow, ApprovalRow, TaskRow, VendorPaymentCard, InsightTile, Badge, Card, Button } = window.NexaFlowDesignSystem_fd0681;
+function Demo(){
+  return <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12,alignItems:'start'}}>
+    <div style={{display:'flex',flexDirection:'column',gap:12}}>
+      <AlertBanner tone="info" title="3-day delay detected" detail="Schematic Stage delayed due to client"/>
+      <AlertBanner tone="warn" title="2 change orders awaiting" detail="Review before Dec 5"/>
+      <AlertBanner tone="ok" title="Scheme R1 approved" detail="Signed off by Sarah Chen"/>
+      <AlertBanner tone="risk" title="Budget variance -3%" detail="Civil package over allocation"/>
+    </div>
+    <div style={{display:'flex',flexDirection:'column',gap:12}}>
+      <FileProgressRow heading="In Progress" name="Elevation details.pdf" size="5.1Mb" percent={45}/>
+      <FileProgressRow heading="Completed" name="Scheme R1.pdf" size="8.2Mb" percent={100}/>
+      <Card title="Pending Approvals" padding={14}>
+        <div style={{font:'var(--text-metric-xl)',textAlign:'center',color:'var(--text-heading)'}}>03</div>
+        <div style={{font:'var(--text-caption)',textAlign:'center',color:'var(--text-muted)',marginTop:-8}}>Items Awaiting</div>
+        <ApprovalRow icon="file" label="Design Files" count={1}/>
+        <ApprovalRow icon="package" label="Material" count={2}/>
+        <Button variant="soft" size="sm">Review All</Button>
+      </Card>
+    </div>
+    <div style={{display:'flex',flexDirection:'column',gap:12}}>
+      <InsightTile icon="trend_down" tone="ok" label="Under Budget" value="₹1.8L" note="2.1% savings"/>
+      <InsightTile icon="alert_circle" tone="warn" label="Pending Approvals" value="2" note="Change orders awaiting"/>
+      <VendorPaymentCard vendor="Marble Italia" scope="Material Supply" paid="₹12L" pending="₹3L" due="Due: Dec 5, 2024"/>
+      <TaskRow title="Review floor plan revisions" meta="09:00 AM" badge={<Badge tone="accent">Design</Badge>}/>
+      <TaskRow title="Review Electrical Drawings" meta="May 28, 2026 · Amit Patel" dot/>
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>

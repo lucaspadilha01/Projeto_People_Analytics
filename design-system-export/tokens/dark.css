@@ -1,0 +1,9 @@
+[data-theme="dark"]{
+--accent:var(--violet-500);--accent-strong:var(--violet-600);--accent-soft:var(--indigo-700);--accent-softer:var(--indigo-800);
+--bg-app:var(--indigo-950);--bg-page:var(--indigo-900);--surface-card:var(--indigo-850);--surface-sunken:var(--indigo-900);--surface-rail:var(--indigo-900);--surface-tint:var(--indigo-800);--surface-accent:var(--violet-600);--surface-accent-ink:var(--neutral-0);
+--text-heading:#F4F2FB;--text-body:#DAD5EE;--text-muted:#9F98C4;--text-faint:#7C75A6;--text-accent:var(--violet-300);
+--border-hairline:#2A2160;--border-card:#2E2368;--border-field:#332877;--border-accent:var(--violet-500);
+--track:#2A2160;--track-accent:#3A2D80;
+--status-ok-bg:#14382A;--status-warn-bg:#3A2A17;--status-risk-bg:#3B1E20;--status-info-bg:#1A2748;
+--series-grid:#332877
+}

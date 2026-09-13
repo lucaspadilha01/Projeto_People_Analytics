@@ -1,0 +1,33 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Transformar Arquivo de BaseDados'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transformar Arquivo de BaseDados\Consultas Auxiliares'
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
+
+annotation PBI_QueryOrder = ["BaseDados","Arquivo de Amostra","Parâmetro1","Transformar o Arquivo de Exemplo","Transformar Arquivo","Funcionarios"]
+
+ref table BaseDados
+ref table DateTableTemplate_c8412427-336a-41ea-85df-985b01440405
+ref table LocalDateTable_99a3733a-f6c9-406a-9169-6c4c9bf1383f
+ref table Funcionarios
+ref table LocalDateTable_06f30b67-cbb8-4da2-bb01-0f39d8347dbe
+ref table LocalDateTable_76724093-5ec1-4144-bd01-c887b8a8fef4
+ref table LocalDateTable_3db60233-f338-4100-b13a-d48ae9318144
+
+ref cultureInfo pt-BR
+

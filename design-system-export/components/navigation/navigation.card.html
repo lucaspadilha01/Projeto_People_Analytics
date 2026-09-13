@@ -1,0 +1,34 @@
+<!-- @dsCard group="Components" viewport="700x430" name="Navigation" subtitle="Product rail, top bar, page header, range tabs, mobile bars" -->
+<!doctype html><html><head><meta charset="utf-8"><title>Navigation</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>*{box-sizing:border-box}body{margin:0;font-family:var(--font-sans);background:var(--bg-page);color:var(--text-body)}a{color:var(--text-accent)}a:hover{color:var(--accent-strong)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.lbl{font:var(--text-micro);font-weight:400;color:var(--text-faint);width:100%;margin:2px 0 -4px}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body><div id="root" style="padding:16px 20px"></div>
+<script type="text/babel">
+const { SidebarNav, TopBar, PageHeader, RangeTabs, BottomNav, MobileAppBar, Button, Logo, NEXAFLOW_NAV } = window.NexaFlowDesignSystem_fd0681;
+function Demo(){
+  const [active,setActive]=React.useState('budget'); const [range,setRange]=React.useState('1Y');
+  const team=[{name:'Amit Patel'},{name:'Priya Sharma'},{name:'Rajesh Kumar'}];
+  return <div style={{display:'grid',gridTemplateColumns:'170px 1fr',gap:14,alignItems:'start'}}>
+    <SidebarNav active={active} onSelect={setActive} brand={<Logo height={56}/>} width={158} style={{borderRadius:12,border:'1px solid var(--border-hairline)',borderRight:'1px solid var(--border-hairline)'}}/>
+    <div style={{display:'flex',flexDirection:'column',gap:12,minWidth:0}}>
+      <div style={{border:'1px solid var(--border-hairline)',borderRadius:12,overflow:'hidden'}}>
+        <TopBar user={{name:'Sarah Chen',role:'Project Manager'}} team={team}/>
+      </div>
+      <PageHeader title="Residential Villa – Phase 2" subtitle="HR Analytics · Dashboard"
+        actions={<><Button variant="secondary" size="sm">+ Add Project</Button><Button size="sm">Import Data</Button></>}/>
+      <div className="row"><span className="lbl">RangeTabs</span><RangeTabs value={range} onChange={setRange}/></div>
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+        <div style={{border:'1px solid var(--border-hairline)',borderRadius:12,overflow:'hidden'}}><MobileAppBar user={{name:'Sarah Chen'}}/></div>
+        <div style={{border:'1px solid var(--border-hairline)',borderRadius:12,overflow:'hidden'}}>
+          <BottomNav active="dashboard" items={[{id:'dashboard',label:'Dashboard',icon:'grid'},{id:'projects',label:'Projects',icon:'folder'},{id:'materials',label:'Materials',icon:'box'},{id:'timeline',label:'Timeline',icon:'calendar'},{id:'team',label:'Team',icon:'users'}]}/>
+        </div>
+      </div>
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>

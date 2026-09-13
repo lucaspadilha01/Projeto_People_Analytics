@@ -1,0 +1,45 @@
+expression Parâmetro1 = #"Arquivo de Amostra" meta [IsParameterQuery=true, BinaryIdentifier=#"Arquivo de Amostra", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 68e206e2-c4f6-48d3-a4b1-77b84e3785c4
+	queryGroup: 'Transformar Arquivo de BaseDados\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Arquivo de Amostra' =
+		let
+		    Fonte = Folder.Files("C:\Users\lucas\OneDrive\Área de Trabalho\Analise_dados_google_MD\Projeto_People_Analytics\BaseDados"),
+		    Navegação1 = Fonte{0}[Content]
+		in
+		    Navegação1
+	lineageTag: 5c73112e-4b5c-44d2-a84a-61bb4baf6558
+	queryGroup: 'Transformar Arquivo de BaseDados\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transformar o Arquivo de Exemplo' =
+		let
+		    Fonte = Csv.Document(Parâmetro1,[Delimiter=";", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true])
+		in
+		    #"Cabeçalhos Promovidos"
+	lineageTag: 5a0b47bf-c909-4c74-ab37-9ab60503b159
+	queryGroup: 'Transformar Arquivo de BaseDados'
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression 'Transformar Arquivo' =
+		let
+		    Fonte = (Parâmetro1 as binary) => let
+		    Fonte = Csv.Document(Parâmetro1,[Delimiter=";", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true])
+		in
+		    #"Cabeçalhos Promovidos"
+		in
+		    Fonte
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transformar o Arquivo de Exemplo""}" ]
+	lineageTag: b03ad233-6e76-4a65-9578-0ef08f3fb053
+	queryGroup: 'Transformar Arquivo de BaseDados\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Function
+
