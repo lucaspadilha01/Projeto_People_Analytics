@@ -1,0 +1,45 @@
+{
+  "name": "HRAnalyticsViolet",
+  "dataColors": [
+    "#7A60CA",
+    "#9580D4",
+    "#AF9FDF",
+    "#CFC4EC",
+    "#5B43A8",
+    "#6A4FD8",
+    "#DFD9F2",
+    "#EFECF9"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#111218",
+  "tableAccent": "#7A60CA",
+  "good": "#2BA76A",
+  "neutral": "#E0812F",
+  "bad": "#DC5B54",
+  "maximum": "#5B43A8",
+  "center": "#AF9FDF",
+  "minimum": "#F6F4FC",
+  "null": "#9A9BA4",
+  "textClasses": {
+    "title": {
+      "fontFace": "Inter",
+      "color": "#111218",
+      "fontSize": 14
+    },
+    "header": {
+      "fontFace": "Inter",
+      "color": "#33343B",
+      "fontSize": 12
+    },
+    "label": {
+      "fontFace": "Inter",
+      "color": "#4E4F58",
+      "fontSize": 10
+    },
+    "callout": {
+      "fontFace": "Inter",
+      "color": "#111218",
+      "fontSize": 32
+    }
+  }
+}

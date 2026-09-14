@@ -1,0 +1,62 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Data display" subtitle="Gauges, KPI tiles, progress, bar/line charts, Gantt, heatmap" -->
+<!doctype html><html><head><meta charset="utf-8"><title>Data</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>*{box-sizing:border-box}body{margin:0;font-family:var(--font-sans);background:var(--bg-page);color:var(--text-body)}a{color:var(--text-accent)}a:hover{color:var(--accent-strong)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.lbl{font:var(--text-micro);font-weight:400;color:var(--text-faint);width:100%;margin:2px 0 -4px}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body><div id="root" style="padding:16px 20px"></div>
+<script type="text/babel">
+const { DonutGauge, StatTile, ProgressBar, BarChart, LineChart, ChartLegend, PhaseTracker, ActivityHeatmap, GanttChart, MiniStatCell, WorkStatusBars, BudgetSplitLegend, Card } = window.NexaFlowDesignSystem_fd0681;
+function Demo(){
+  return <div style={{display:'flex',flexDirection:'column',gap:14}}>
+    <div style={{display:'grid',gridTemplateColumns:'190px 1fr 1fr',gap:12,alignItems:'start'}}>
+      <Card title="Budget Overview">
+        <div style={{display:'flex',justifyContent:'center'}}><DonutGauge value={73} sublabel="Allocated" size={118}/></div>
+        <BudgetSplitLegend items={[{label:'Civil',percent:35},{label:'MEP',percent:25,color:'var(--series-2)'},{label:'Interiors',percent:28,color:'var(--series-3)'},{label:'Contingency',percent:12,color:'var(--series-4)'}]}/>
+      </Card>
+      <Card title="Project Performance Analytics" meta="Task completion, timeline, and budget tracking">
+        <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:8}}>
+          <StatTile label="On schedule" value="92%" delta="+5%"/>
+          <StatTile label="Tasks Completed" value="156" delta="+12%"/>
+          <StatTile label="Budget Variance" value="-3%" delta="±2%" direction="down"/>
+        </div>
+        <BarChart height={92} stacked yTicks={['100','75','50','25','0']} data={[['Jan',18,8,5],['Feb',24,9,6],['Mar',30,10,7],['Apr',36,11,7],['May',44,12,8],['Jun',52,13,8],['Jul',60,14,9]].map(([label,a,b,c])=>({label,values:[a,b,c]}))}/>
+      </Card>
+      <Card title="Monthly Cashflow">
+        <LineChart height={92} labels={['Jan','Feb','Mar','Apr','May','Jun','Jul']} yTicks={['₹60L','₹45L','₹30L','₹15L','₹0L']} series={[{name:'Actual',points:[6,10,16,20,30,42,52]},{name:'Planned',points:[7,11,15,22,32,40,49]}]}/>
+        <ChartLegend items={[{label:'Actual'},{label:'Planned',color:'var(--series-3)'}]}/>
+      </Card>
+    </div>
+    <div style={{display:'grid',gridTemplateColumns:'1.5fr 1fr 1fr',gap:12,alignItems:'start'}}>
+      <Card title="Timeline Gantt Chart">
+        <GanttChart months={['Jan','Feb','Mar','Apr','May','Jun']} rows={[
+          {label:'Concept Design',start:0,span:1,status:'completed'},
+          {label:'Material Selection',start:1.4,span:1.6,status:'completed'},
+          {label:'Working Drawing',start:2.6,span:1.2,status:'ontrack',percent:75},
+          {label:'Furniture Layout',start:3.6,span:1,status:'delayed',percent:45},
+          {label:'Execution Phase',start:4.6,span:1.2,status:'pending'}]}
+          milestones={[{at:0.8,done:true},{at:2.2,done:true},{at:4.4}]}/>
+      </Card>
+      <Card title="Progress Overview">
+        <ProgressBar label="Design Completion" value={92}/>
+        <ProgressBar label="Drawings" value={75}/>
+        <ProgressBar label="Overall Timeline" value={65}/>
+        <PhaseTracker phases={[{label:'Concept',done:true},{label:'Scheme',done:true},{label:'Design',active:true},{label:'GFC'},{label:'Exec'}]}/>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8}}>
+          <MiniStatCell label="Completed" value="5" tone="ok"/><MiniStatCell label="Active" value="3" tone="accent"/>
+          <MiniStatCell label="Delayed" value="1" tone="warn"/><MiniStatCell label="Pending" value="2"/>
+        </div>
+      </Card>
+      <Card title="Activity & work status">
+        <ActivityHeatmap days={[{weekday:'Mon',date:18,level:3,dots:2},{weekday:'Tue',date:19,level:3,dots:3},{weekday:'Wed',date:20,level:1,dots:1},{weekday:'Thu',date:21,level:3,dots:3},{weekday:'Fri',date:22,level:1,dots:2},{weekday:'Sat',date:23,level:0},{weekday:'Sun',date:24,level:1,dots:2}]}/>
+        <div style={{font:'var(--text-metric-lg)',color:'var(--text-heading)'}}>75%</div>
+        <WorkStatusBars done={0.45} inProgress={0.3}/>
+        <ChartLegend align="flex-start" items={[{label:'Total'},{label:'Done',color:'var(--series-2)'},{label:'In progress',color:'var(--series-4)'}]}/>
+      </Card>
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>

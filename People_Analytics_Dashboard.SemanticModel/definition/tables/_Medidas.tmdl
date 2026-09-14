@@ -1,0 +1,189 @@
+table _Medidas
+	lineageTag: e1e1a001-0000-4a00-9000-000000000000
+
+	measure Headcount =
+			VAR DataFinal = MAX('Calendario'[Date])
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT('Funcionarios'[Cód Funcionário]),
+			        'Funcionarios'[Data Admissão] <= DataFinal,
+			        OR('Funcionarios'[Data Afastamento] > DataFinal, ISBLANK('Funcionarios'[Data Afastamento]))
+			    )
+		formatString: #,0
+		lineageTag: e1e1a001-0000-4a00-9000-000000000001
+
+	measure Contratações =
+			VAR DataInicio = MIN('Calendario'[Date])
+			VAR DataFim = MAX('Calendario'[Date])
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT('Funcionarios'[Cód Funcionário]),
+			        'Funcionarios'[Data Admissão] >= DataInicio,
+			        'Funcionarios'[Data Admissão] <= DataFim
+			    )
+		formatString: #,0
+		lineageTag: e1e1a001-0000-4a00-9000-000000000002
+
+	measure Demissões =
+			VAR DataInicio = MIN('Calendario'[Date])
+			VAR DataFim = MAX('Calendario'[Date])
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT('Funcionarios'[Cód Funcionário]),
+			        'Funcionarios'[Situação] = "Demitido",
+			        'Funcionarios'[Data Afastamento] >= DataInicio,
+			        'Funcionarios'[Data Afastamento] <= DataFim
+			    )
+		formatString: #,0
+		lineageTag: e1e1a001-0000-4a00-9000-000000000003
+
+	measure 'Headcount Período Anterior' =
+			VAR DataInicio = MIN('Calendario'[Date])
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT('Funcionarios'[Cód Funcionário]),
+			        'Funcionarios'[Data Admissão] < DataInicio,
+			        OR('Funcionarios'[Data Afastamento] >= DataInicio, ISBLANK('Funcionarios'[Data Afastamento]))
+			    )
+		formatString: #,0
+		lineageTag: e1e1a001-0000-4a00-9000-000000000004
+
+	measure 'Turnover Demissional %' = DIVIDE([Demissões], [Headcount Período Anterior])
+		formatString: 0.0%
+		lineageTag: e1e1a001-0000-4a00-9000-000000000005
+
+	measure 'Turnover Ativo' =
+			VAR DataInicio = MIN('Calendario'[Date])
+			VAR DataFim = MAX('Calendario'[Date])
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT('Funcionarios'[Cód Funcionário]),
+			        'Funcionarios'[Segmento Turnover] = "Ativo",
+			        'Funcionarios'[Data Afastamento] >= DataInicio,
+			        'Funcionarios'[Data Afastamento] <= DataFim
+			    )
+		formatString: #,0
+		lineageTag: e1e1a001-0000-4a00-9000-000000000006
+
+	measure 'Turnover Passivo' =
+			VAR DataInicio = MIN('Calendario'[Date])
+			VAR DataFim = MAX('Calendario'[Date])
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT('Funcionarios'[Cód Funcionário]),
+			        'Funcionarios'[Segmento Turnover] = "Passivo",
+			        'Funcionarios'[Data Afastamento] >= DataInicio,
+			        'Funcionarios'[Data Afastamento] <= DataFim
+			    )
+		formatString: #,0
+		lineageTag: e1e1a001-0000-4a00-9000-000000000007
+
+	measure 'Turnover Espontâneo' =
+			VAR DataInicio = MIN('Calendario'[Date])
+			VAR DataFim = MAX('Calendario'[Date])
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT('Funcionarios'[Cód Funcionário]),
+			        'Funcionarios'[Segmento Turnover] = "Espontâneo",
+			        'Funcionarios'[Data Afastamento] >= DataInicio,
+			        'Funcionarios'[Data Afastamento] <= DataFim
+			    )
+		formatString: #,0
+		lineageTag: e1e1a001-0000-4a00-9000-000000000008
+
+	measure 'Má Contratação #' =
+			VAR DataInicio = MIN('Calendario'[Date])
+			VAR DataFim = MAX('Calendario'[Date])
+			RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT('Funcionarios'[Cód Funcionário]),
+			        'Funcionarios'[Má Contratação] = TRUE(),
+			        'Funcionarios'[Data Afastamento] >= DataInicio,
+			        'Funcionarios'[Data Afastamento] <= DataFim
+			    )
+		formatString: #,0
+		lineageTag: e1e1a001-0000-4a00-9000-000000000009
+
+	measure 'Má Contratação %' = DIVIDE([Má Contratação #], [Demissões])
+		formatString: 0.0%
+		lineageTag: e1e1a001-0000-4a00-9000-000000000010
+
+	measure 'Massa Salarial' =
+			VAR DataFinal = MAX('Calendario'[Date])
+			RETURN
+			    CALCULATE(
+			        SUM('Funcionarios'[Valor Salário]),
+			        'Funcionarios'[Data Admissão] <= DataFinal,
+			        OR('Funcionarios'[Data Afastamento] > DataFinal, ISBLANK('Funcionarios'[Data Afastamento]))
+			    )
+		formatString: #,0.00
+		lineageTag: e1e1a001-0000-4a00-9000-000000000011
+
+	measure 'Horas Normais' = CALCULATE(SUM('BaseDados'[ Valor]), 'BaseDados'[Categoria de Evento] = "Horas Normais")
+		formatString: #,0.00
+		lineageTag: e1e1a001-0000-4a00-9000-000000000012
+
+	measure 'Horas Extras' = CALCULATE(SUM('BaseDados'[ Valor]), 'BaseDados'[Categoria de Evento] = "Horas Extras")
+		formatString: #,0.00
+		lineageTag: e1e1a001-0000-4a00-9000-000000000013
+
+	measure '% Horas Extras' = DIVIDE([Horas Extras], [Horas Normais])
+		formatString: 0.0%
+		lineageTag: e1e1a001-0000-4a00-9000-000000000014
+
+	measure Absenteísmo =
+			CALCULATE(
+			    SUM('BaseDados'[ Valor]),
+			    'BaseDados'[Categoria de Evento] = "Faltas"
+			        || 'BaseDados'[Categoria de Evento] = "Atraso"
+			        || 'BaseDados'[Categoria de Evento] = "Atestado"
+			)
+		formatString: #,0.00
+		lineageTag: e1e1a001-0000-4a00-9000-000000000015
+
+	measure '% Absenteísmo' = DIVIDE([Absenteísmo], [Horas Normais])
+		formatString: 0.00%
+		lineageTag: e1e1a001-0000-4a00-9000-000000000016
+
+	measure 'Leque Salarial' =
+			VAR DataFinal = MAX('Calendario'[Date])
+			VAR SalariosAtivos =
+			    CALCULATETABLE(
+			        VALUES('Funcionarios'[Valor Salário]),
+			        'Funcionarios'[Data Admissão] <= DataFinal,
+			        OR('Funcionarios'[Data Afastamento] > DataFinal, ISBLANK('Funcionarios'[Data Afastamento]))
+			    )
+			VAR MaiorSalario = MAXX(SalariosAtivos, 'Funcionarios'[Valor Salário])
+			VAR MenorSalario = MINX(SalariosAtivos, 'Funcionarios'[Valor Salário])
+			RETURN
+			    DIVIDE(MaiorSalario, MenorSalario)
+		formatString: 0.00
+		lineageTag: e1e1a001-0000-4a00-9000-000000000017
+
+	measure 'Índice de Tecnicidade' =
+			VAR DataFinal = MAX('Calendario'[Date])
+			VAR Ativos =
+			    FILTER(
+			        'Funcionarios',
+			        'Funcionarios'[Data Admissão] <= DataFinal
+			            && (ISBLANK('Funcionarios'[Data Afastamento]) || 'Funcionarios'[Data Afastamento] > DataFinal)
+			    )
+			VAR ComSuperior = COUNTROWS(FILTER(Ativos, 'Funcionarios'[Formação Superior] = TRUE()))
+			RETURN
+			    DIVIDE(ComSuperior, COUNTROWS(Ativos))
+		formatString: 0.0%
+		lineageTag: e1e1a001-0000-4a00-9000-000000000018
+
+	measure 'Tempo Médio de Retenção (Dias)' = AVERAGE('Funcionarios'[Tempo de Retenção (Dias)])
+		formatString: #,0
+		lineageTag: e1e1a001-0000-4a00-9000-000000000019
+
+	column Medidas
+		lineageTag: 1af547a2-6025-46db-b057-0e1750dddd8b
+		isNameInferred
+		sourceColumn: [Medidas]
+
+	partition _Medidas = calculated
+		mode: import
+		source = ROW("Medidas", 1)
+

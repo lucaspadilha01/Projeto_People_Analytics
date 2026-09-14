@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../styles.css">
+<script src="../../_ds_bundle.js"></script>
+<script src="../../templates/dashboard/support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#7A60CA">
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="800" fill="#7A60CA"/>
+<rect x="420" y="470" width="96" height="140" rx="20" fill="#FFFFFF"/>
+<rect x="552" y="390" width="96" height="220" rx="20" fill="#DFD9F2"/>
+<rect x="684" y="500" width="96" height="110" rx="20" fill="#CFC4EC"/>
+<rect x="420" y="200" width="360" height="14" rx="7" fill="#FFFFFF"/>
+<rect x="420" y="660" width="360" height="14" rx="7" fill="#FFFFFF"/>
+</svg>
+</template>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Analytics Dashboard" description="HR Analytics dashboard shell: rail, top bar, page header and a card mosaic of gauges, KPI tiles and charts." -->
+<helmet><style>*{box-sizing:border-box}html,body{margin:0;height:100%}body{font-family:var(--font-sans),system-ui;background:var(--bg-app,#F1F1F1)}a{color:var(--text-accent)}a:hover{color:var(--accent-strong)}</style></helmet>
+<div style="display:flex;height:100vh;min-height:0;background:var(--bg-app);font-family:var(--font-sans),system-ui">
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.SidebarNav" active="{{ screen }}" onSelect="{{ setScreen }}" brand="{{ brandLogo }}" hint-size="148px,100%"></x-import>
+<div style="flex:1;min-width:0;display:flex;flex-direction:column">
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.TopBar" user="{{ user }}" team="{{ team }}" hint-size="100%,56px"></x-import>
+<div style="flex:1;min-height:0;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;padding:12px 16px;box-shadow:var(--shadow-card)">
+<div style="min-width:0"><h2 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Residential Villa – Phase 2</h2><p style="margin:2px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">HR Analytics · Dashboard</p></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.Button" variant="secondary" hint-size="120px,36px">+ Add Project</x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.Button" hint-size="110px,36px">Import Data</x-import>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1.15fr .72fr 1.35fr;gap:12px;align-items:start">
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:14px;min-width:0">
+<div style="display:flex;justify-content:center;padding-top:4px">
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.DonutGauge" value="{{ completion }}" sublabel="Complete" size="148" thickness="14" hint-size="148px,148px"></x-import>
+</div>
+<div style="text-align:center"><div style="font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Current Phase</div><div style="font:var(--text-body-sm);font-family:var(--font-sans),system-ui;color:var(--text-accent);margin-top:3px">Design Development</div></div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.PhaseTracker" phases="{{ phases }}" hint-size="100%,32px"></x-import>
+</section>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0">
+<h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Pending Approvals</h3>
+<div style="text-align:center"><div style="font:var(--text-metric-xl);font-family:var(--font-sans),system-ui;color:var(--text-heading)">03</div><div style="font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Items Awaiting</div></div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.ApprovalRow" icon="file" label="Design Files" count="1" hint-size="100%,38px"></x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.ApprovalRow" icon="package" label="Material" count="2" hint-size="100%,38px"></x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.Button" variant="soft" style="width:100%;display:flex;flex-direction:column" hint-size="100%,36px">Review All</x-import>
+</section>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Project Performance Analytics</h3>
+<p style="margin:-8px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Task completion, timeline, and budget tracking</p>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.StatTile" label="On schedule" value="92%" delta="+5%" hint-size="100%,64px"></x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.StatTile" label="Tasks Completed" value="156" delta="+12%" hint-size="100%,64px"></x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.StatTile" label="Budget Variance" value="-3%" delta="±2%" direction="down" hint-size="100%,64px"></x-import>
+</div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.BarChart" stacked="{{ true }}" height="118" barWidth="16" yTicks="{{ perfTicks }}" data="{{ perfBars }}" hint-size="100%,140px"></x-import>
+</section>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Architect's Work statistics</h3>
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px">
+<div><div style="font:var(--text-body-sm);font-family:var(--font-sans),system-ui;color:var(--text-body)">Work status</div><div style="font:var(--text-metric-lg);font-family:var(--font-sans),system-ui;color:var(--text-heading)">75%</div></div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.ChartLegend" align="flex-end" items="{{ workLegend }}" hint-size="200px,16px"></x-import>
+</div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.WorkStatusBars" total="64" done="0.45" inProgress="0.3" hint-size="100%,26px"></x-import>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.FileProgressRow" heading="In Progress" name="Elevation details.pdf" size="5.1Mb" percent="45" hint-size="100%,130px"></x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.FileProgressRow" heading="Completed" name="Scheme R1.pdf" size="8.2Mb" percent="100" hint-size="100%,130px"></x-import>
+</div>
+</section>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Project Timeline</h3>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.AlertBanner" tone="info" title="3-day delay detected" detail="Schematic Stage delayed due to client" hint-size="100%,56px"></x-import>
+<sc-for list="{{ stages }}" as="stage" hint-placeholder-count="6">
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.ProgressBar" label="{{ stage.label }}" value="{{ stage.value }}" hint-size="100%,30px"></x-import>
+</sc-for>
+</section>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Calendar &amp; Tasks</h3>
+<div style="background:var(--surface-tint);border-radius:8px;padding:12px;display:flex;align-items:center;gap:14px">
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.DonutGauge" value="{{ completion }}" size="74" thickness="9" hint-size="74px,74px"></x-import>
+<div style="min-width:0"><div style="font:var(--text-body-sm);font-family:var(--font-sans),system-ui;color:var(--text-body)">Today's Progress</div><div style="font:var(--text-h3);font-family:var(--font-sans),system-ui;color:var(--text-heading);margin:2px 0 6px">2 of 5 completed</div></div>
+</div>
+<div style="font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Activity Heatmap</div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.ActivityHeatmap" days="{{ week }}" hint-size="100%,90px"></x-import>
+<div style="font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Today's Schedule</div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.TaskRow" title="Review floor plan revisions" meta="09:00 AM" hint-size="100%,46px"></x-import>
+</section>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light' | 'dark'&quot;,&quot;section&quot;:&quot;Appearance&quot;},&quot;completion&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:1,&quot;default&quot;:65,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;userName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Sarah Chen&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;userRole&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Project Manager&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  state = { screen: 'dashboard' };
+  componentDidMount() {
+    document.documentElement.setAttribute('data-theme', this.props.theme ?? 'light');
+  }
+  componentDidUpdate(prev) {
+    if (prev.theme !== this.props.theme) document.documentElement.setAttribute('data-theme', this.props.theme ?? 'light');
+  }
+  renderVals() {
+    const NS = window.NexaFlowDesignSystem_fd0681 || {};
+    const Logo = NS.Logo;
+    return {
+      screen: this.state.screen,
+      setScreen: id => this.setState({ screen: id === 'logout' ? 'dashboard' : id }),
+      brandLogo: Logo ? React.createElement(Logo, { height: 58 }) : null,
+      user: { name: this.props.userName ?? 'Sarah Chen', role: this.props.userRole ?? 'Project Manager' },
+      team: [{ name: 'Amit Patel' }, { name: 'Priya Sharma' }, { name: 'Rajesh Kumar' }],
+      completion: this.props.completion ?? 65,
+      phases: [
+        { label: 'Concept', done: true }, { label: 'Scheme', done: true },
+        { label: 'Design', done: true }, { label: 'GFC' }, { label: 'Execution' }
+      ],
+      perfTicks: ['100', '75', '50', '25', '0'],
+      perfBars: [
+        { label: 'Jan', values: [18, 8, 5] }, { label: 'Feb', values: [24, 9, 6] },
+        { label: 'Mar', values: [30, 10, 7] }, { label: 'Apr', values: [36, 11, 7] },
+        { label: 'May', values: [44, 12, 8] }, { label: 'Jun', values: [52, 13, 8] },
+        { label: 'Jul', values: [60, 14, 9] }
+      ],
+      workLegend: [{ label: 'Total' }, { label: 'Done', color: 'var(--series-2)' }, { label: 'In progress', color: 'var(--series-4)' }],
+      stages: [
+        { label: 'Concept Design', value: 100 }, { label: 'Schematic Design', value: 100 },
+        { label: 'Architectural Design', value: 65 }, { label: 'GFC Drawings', value: 0 },
+        { label: 'Interior Design', value: 0 }, { label: 'Execution', value: 0 }
+      ],
+      week: [
+        { weekday: 'Mon', date: 18, level: 3, dots: 2 }, { weekday: 'Tue', date: 19, level: 3, dots: 3 },
+        { weekday: 'Wed', date: 20, level: 1, dots: 1 }, { weekday: 'Thu', date: 21, level: 3, dots: 3 },
+        { weekday: 'Fri', date: 22, level: 1, dots: 2 }, { weekday: 'Sat', date: 23, level: 0, dots: 0 },
+        { weekday: 'Sun', date: 24, level: 1, dots: 2 }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
+

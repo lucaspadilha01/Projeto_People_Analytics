@@ -33,11 +33,6 @@ table BaseDados
 		summarizeBy: none
 		sourceColumn: " Mês Pag. "
 
-		variation Variation
-			isDefault
-			relationship: b00230a3-2392-4ff2-990a-06d115eecb08
-			defaultHierarchy: LocalDateTable_99a3733a-f6c9-406a-9169-6c4c9bf1383f.'Hierarquia de datas'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
@@ -76,6 +71,23 @@ table BaseDados
 		annotation SummarizationSetBy = Automatic
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Categoria de Evento' =
+			SWITCH(
+			    TRUE(),
+			    'BaseDados'[ Evento ] = 1 || 'BaseDados'[ Evento ] = 100, "Horas Normais",
+			    'BaseDados'[ Evento ] = 257 || 'BaseDados'[ Evento ] = 261
+			        || 'BaseDados'[ Evento ] = 264 || 'BaseDados'[ Evento ] = 266, "Horas Extras",
+			    'BaseDados'[ Evento ] = 3 || 'BaseDados'[ Evento ] = 4, "Faltas",
+			    'BaseDados'[ Evento ] = 2457, "Atraso",
+			    'BaseDados'[ Evento ] = 14 || 'BaseDados'[ Evento ] = 113, "Atestado",
+			    "Outros"
+			)
+		dataType: string
+		lineageTag: c1e1a001-0000-4a00-9000-000000000001
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
 
 	partition BaseDados = m
 		mode: import

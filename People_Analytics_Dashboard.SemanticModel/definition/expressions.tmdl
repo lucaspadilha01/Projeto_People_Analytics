@@ -43,3 +43,26 @@ expression 'Transformar Arquivo' =
 
 	annotation PBI_ResultType = Function
 
+expression 'Erros em Funcionarios' =
+		let
+		Fonte = Funcionarios,
+		  #"Incompatibilidades de Tipo Detectadas" = let
+		    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Fonte, Table.ColumnsOfType(Fonte, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),
+		    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),
+		    fieldNames = Record.FieldNames(recordTypeFields),
+		    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),
+		    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = "O tipo do valor não corresponde ao tipo da coluna.", Detail = v], fieldTypes{i}})
+		in
+		    Table.TransformColumns(Fonte, pairs),
+		  #"Índice Adicionado" = Table.AddIndexColumn(#"Incompatibilidades de Tipo Detectadas", "Número da Linha" ,1),
+		  #"Erros Mantidos" = Table.SelectRowsWithErrors(#"Índice Adicionado", {"Cód Funcionário", "Funcionário", "Sexo", "Data Admissão", "Cód Cargo", "Cargo", "Data Cargo", "Cód Escala", "Escala", "Cód C.Custo", "Centro Custo", "Cód T. Contrato", "Tipo Contrato", "Cód Estado Civil", "Estado Civil", "Cód Escolaridade", "Escolaridade", "Data Nascimento", "Cód Nacionalidade", "Nacionalidade", "Cód Raça", "Raça", "Valor Salário", "Data Salário", "Cód Situação", "Situação", "Data Afastamento", "Cód Causa Afastamento", "Causa Afastamento"}),
+		  #"Colunas Reordenadas" = Table.ReorderColumns(#"Erros Mantidos", {"Número da Linha", "Cód Funcionário", "Funcionário", "Sexo", "Data Admissão", "Cód Cargo", "Cargo", "Data Cargo", "Cód Escala", "Escala", "Cód C.Custo", "Centro Custo", "Cód T. Contrato", "Tipo Contrato", "Cód Estado Civil", "Estado Civil", "Cód Escolaridade", "Escolaridade", "Data Nascimento", "Cód Nacionalidade", "Nacionalidade", "Cód Raça", "Raça", "Valor Salário", "Data Salário", "Cód Situação", "Situação", "Data Afastamento", "Cód Causa Afastamento", "Causa Afastamento"})
+		in
+		  #"Colunas Reordenadas"
+	lineageTag: 97656d70-c9aa-4f7b-a004-c50c606f2cff
+	queryGroup: 'Erros na Consulta - 13/09/2026 20:57:46'
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

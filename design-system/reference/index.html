@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Analytics Design System — Visual Reference Hub</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+      background: var(--bg-app, #F1F1F1);
+      color: var(--text-body, #33343B);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: var(--surface-card, #FFFFFF);
+      border-bottom: 1px solid var(--border-hairline, #EAEAEC);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-card);
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-title h1 {
+      font: var(--text-h3);
+      color: var(--text-heading, #111218);
+      letter-spacing: var(--tracking-tight);
+    }
+
+    .brand-title p {
+      font: var(--text-caption);
+      color: var(--text-muted, #71727C);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      font: var(--text-button);
+      background: var(--surface-tint, #EFECF9);
+      color: var(--accent, #7A60CA);
+      border: 1px solid var(--border-accent, #AF9FDF);
+      border-radius: var(--radius-md, 8px);
+      cursor: pointer;
+      transition: var(--transition-control);
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--accent, #7A60CA);
+      color: #FFFFFF;
+    }
+
+    .main-container {
+      flex: 1;
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 32px 32px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .hero-banner {
+      background: linear-gradient(135deg, var(--violet-700) 0%, var(--violet-500) 100%);
+      color: #FFFFFF;
+      padding: 32px 36px;
+      border-radius: var(--radius-xl, 16px);
+      box-shadow: var(--shadow-raised);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .hero-banner h2 {
+      font: var(--text-h1);
+      margin-bottom: 8px;
+      letter-spacing: var(--tracking-tight);
+    }
+
+    .hero-banner p {
+      font: var(--text-body-lg);
+      opacity: 0.92;
+      max-width: 650px;
+      line-height: 1.5;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 24px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      padding: 16px 24px;
+      border-radius: var(--radius-lg, 12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-stat-item {
+      text-align: center;
+    }
+
+    .hero-stat-item .num {
+      font: var(--text-metric-lg);
+      font-weight: 700;
+    }
+
+    .hero-stat-item .lbl {
+      font: var(--text-micro);
+      opacity: 0.85;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-hairline, #EAEAEC);
+      padding-bottom: 8px;
+    }
+
+    .section-title h3 {
+      font: var(--text-h3);
+      color: var(--text-heading, #111218);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-count {
+      font: var(--text-micro);
+      background: var(--surface-tint, #EFECF9);
+      color: var(--accent, #7A60CA);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill, 999px);
+      font-weight: 600;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
+    .app-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 20px;
+    }
+
+    .specimen-card {
+      background: var(--surface-card, #FFFFFF);
+      border: 1px solid var(--border-hairline, #EAEAEC);
+      border-radius: var(--radius-lg, 12px);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-control);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .specimen-card:hover {
+      border-color: var(--border-accent, #AF9FDF);
+      box-shadow: var(--shadow-raised);
+      transform: translateY(var(--hover-lift, -1px));
+    }
+
+    .card-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-hairline, #EAEAEC);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface-card, #FFFFFF);
+    }
+
+    .card-title {
+      font: var(--text-h4);
+      color: var(--text-heading, #111218);
+    }
+
+    .card-subtitle {
+      font: var(--text-caption);
+      color: var(--text-muted, #71727C);
+      margin-top: 2px;
+    }
+
+    .card-preview-frame {
+      height: 200px;
+      width: 100%;
+      border: none;
+      background: var(--bg-page, #FFFFFF);
+      pointer-events: none;
+    }
+
+    .app-preview-frame {
+      height: 280px;
+      width: 100%;
+      border: none;
+      background: var(--bg-page, #FFFFFF);
+      pointer-events: none;
+    }
+
+    .card-footer {
+      padding: 10px 16px;
+      background: var(--surface-sunken, #FAFAFB);
+      border-top: 1px solid var(--border-hairline, #EAEAEC);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font: var(--text-micro);
+      color: var(--accent, #7A60CA);
+      font-weight: 600;
+    }
+
+    .btn-open {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--accent, #7A60CA);
+      text-decoration: none;
+    }
+
+    footer {
+      background: var(--surface-card, #FFFFFF);
+      border-top: 1px solid var(--border-hairline, #EAEAEC);
+      padding: 24px 32px;
+      text-align: center;
+      font: var(--text-caption);
+      color: var(--text-muted, #71727C);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-section">
+      <div style="width: 32px; height: 32px; background: var(--violet-500); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px;">HR</div>
+      <div class="brand-title">
+        <h1>HR Analytics Design System</h1>
+        <p>Visual Reference Hub & Specimen Showcase</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">
+        <span>🌓 Alternar Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="main-container">
+
+    <!-- Hero Section -->
+    <div class="hero-banner">
+      <div>
+        <h2>Referência Visual Completa</h2>
+        <p>Todos os tokens, diretrizes de marca, espécimes de componentes e telas de aplicação interativas preservados e executáveis localmente.</p>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat-item">
+          <div class="num">21</div>
+          <div class="lbl">Guidelines</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="num">30</div>
+          <div class="lbl">Componentes</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="num">4</div>
+          <div class="lbl">Aplicações</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Applications -->
+    <section>
+      <div class="section-title">
+        <h3>🚀 Telas & Aplicações Interativas <span class="badge-count">4</span></h3>
+      </div>
+      <div class="app-cards-grid">
+        <a class="specimen-card" href="../ui_kits/nexaflow-web/index.html" target="_blank">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Desktop Web App (Analytics Dashboard)</div>
+              <div class="card-subtitle">Dashboard completo, navegação lateral, KPIs e timeline</div>
+            </div>
+          </div>
+          <iframe class="app-preview-frame" src="../ui_kits/nexaflow-web/index.html" scrolling="no"></iframe>
+          <div class="card-footer">
+            <span>ui_kits/nexaflow-web/index.html</span>
+            <span class="btn-open">Abrir Tela ↗</span>
+          </div>
+        </a>
+
+        <a class="specimen-card" href="../ui_kits/nexaflow-mobile/index.html" target="_blank">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Mobile Companion App</div>
+              <div class="card-subtitle">Três telas mobile com bottom navigation e KPI cards</div>
+            </div>
+          </div>
+          <iframe class="app-preview-frame" src="../ui_kits/nexaflow-mobile/index.html" scrolling="no"></iframe>
+          <div class="card-footer">
+            <span>ui_kits/nexaflow-mobile/index.html</span>
+            <span class="btn-open">Abrir Tela ↗</span>
+          </div>
+        </a>
+
+        <a class="specimen-card" href="apps/dashboard-standalone.html" target="_blank">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Dashboard Template Shell</div>
+              <div class="card-subtitle">Template declarativo com DonutGauge, Heatmap e Status</div>
+            </div>
+          </div>
+          <iframe class="app-preview-frame" src="apps/dashboard-standalone.html" scrolling="no"></iframe>
+          <div class="card-footer">
+            <span>reference/apps/dashboard-standalone.html</span>
+            <span class="btn-open">Abrir Template ↗</span>
+          </div>
+        </a>
+
+        <a class="specimen-card" href="apps/hr-analytics-dashboard.html" target="_blank">
+          <div class="card-header">
+            <div>
+              <div class="card-title">HR Analytics Standalone Bundle</div>
+              <div class="card-subtitle">Pacote autocontido de visualização executável</div>
+            </div>
+          </div>
+          <iframe class="app-preview-frame" src="apps/hr-analytics-dashboard.html" scrolling="no"></iframe>
+          <div class="card-footer">
+            <span>reference/apps/hr-analytics-dashboard.html</span>
+            <span class="btn-open">Abrir Bundle ↗</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Component Specimen Cards -->
+    <section>
+      <div class="section-title">
+        <h3>🧩 Espécimes de Componentes <span class="badge-count">5</span></h3>
+      </div>
+      <div class="cards-grid">
+        <a class="specimen-card" href="components/core.card.html" target="_blank">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Core Controls</div>
+              <div class="card-subtitle">Button, IconButton, Badge, Card, Input, Toggles, Avatar</div>
+            </div>
+          </div>
+          <iframe class="card-preview-frame" src="components/core.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>core.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="components/data.card.html" target="_blank">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Data Display & Charts</div>
+              <div class="card-subtitle">BarChart, DonutGauge, Heatmap, Gantt, StatTile, Progress</div>
+            </div>
+          </div>
+          <iframe class="card-preview-frame" src="components/data.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>data.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="components/brand.card.html" target="_blank">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Brand Logo Component</div>
+              <div class="card-subtitle">Variações lockup, reversed, mono e mark com Inter</div>
+            </div>
+          </div>
+          <iframe class="card-preview-frame" src="components/brand.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>brand.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="components/feedback.card.html" target="_blank">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Feedback & List Items</div>
+              <div class="card-subtitle">AlertBanner, ApprovalRow, FileProgress, InsightTile, Tasks</div>
+            </div>
+          </div>
+          <iframe class="card-preview-frame" src="components/feedback.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>feedback.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="components/navigation.card.html" target="_blank">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Navigation Controls</div>
+              <div class="card-subtitle">SidebarNav, TopBar, PageHeader, RangeTabs, BottomNav</div>
+            </div>
+          </div>
+          <iframe class="card-preview-frame" src="components/navigation.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>navigation.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Visual Guidelines Cards -->
+    <section>
+      <div class="section-title">
+        <h3>🎨 Diretrizes Visuais & Tokens (Guidelines) <span class="badge-count">21</span></h3>
+      </div>
+      <div class="cards-grid">
+        <a class="specimen-card" href="guidelines/colors-brand.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Brand Color Ramp</div><div class="card-subtitle">Escala de violetas (--violet-25 a --violet-700)</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/colors-brand.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>colors-brand.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/colors-chart-series.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Violet-on-Violet Chart Series</div><div class="card-subtitle">Hierarquia monocromática de gráficos (--series-1..4)</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/colors-chart-series.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>colors-chart-series.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/colors-dark.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Dark Theme Surfaces</div><div class="card-subtitle">Mapeamento deep indigo para modo escuro</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/colors-dark.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>colors-dark.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/colors-neutrals.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Neutral Color Palette</div><div class="card-subtitle">Superfícies de página, card, hairline e tintas de texto</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/colors-neutrals.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>colors-neutrals.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/colors-semantic.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Semantic Status Colors</div><div class="card-subtitle">On-track, Warn, Risk e Info com pares de fundo e texto</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/colors-semantic.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>colors-semantic.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/type-family.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Typography: Inter Family</div><div class="card-subtitle">Pesos 400, 500, 600 e 700</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/type-family.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>type-family.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/type-headings.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Typography: Headings</div><div class="card-subtitle">Display 44px até H4 15px com tracking semibold</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/type-headings.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>type-headings.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/type-metrics.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Typography: Metric Numerals</div><div class="card-subtitle">Três tamanhos fixos para dashboard: 40px, 28px, 20px</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/type-metrics.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>type-metrics.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/type-body.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Typography: Body & Captions</div><div class="card-subtitle">16px, 14px, 13px body, 12px caption, 11px micro</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/type-body.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>type-body.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/grid-system.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Grid & Layout Architecture</div><div class="card-subtitle">1440px / 12 colunas / margem 60px / gutter 24px</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/grid-system.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>grid-system.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/spacing-scale.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Spacing Scale</div><div class="card-subtitle">Escala 2px a 60px (--space-1 a --space-12)</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/spacing-scale.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>spacing-scale.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/spacing-card-anatomy.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Card Anatomy & Padding</div><div class="card-subtitle">16px padding interno, 12px gap entre cards</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/spacing-card-anatomy.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>spacing-card-anatomy.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/radius-scale.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Corner Radii Scale</div><div class="card-subtitle">4px fields, 8px controls, 12px cards, 999px pills</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/radius-scale.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>radius-scale.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/elevation.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Elevation & Shadows</div><div class="card-subtitle">Hairline 1px, micro sombras e violet glow em botões</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/elevation.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>elevation.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/motion.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Motion & Transitions</div><div class="card-subtitle">80ms press, 140ms hover, 200ms panels, 600ms charts</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/motion.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>motion.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/brand-hr-analytics.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Brand Identity: Logo Variants</div><div class="card-subtitle">Lockup, reversed, mono e bar mark</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/brand-hr-analytics.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>brand-hr-analytics.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/brand-logo.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Brand Identity: Logo Sizing</div><div class="card-subtitle">Regra de corte mínimo de 56px (lockup) vs 16px (mark)</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/brand-logo.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>brand-logo.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/brand-accent-card.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Brand Rule: Accent Card</div><div class="card-subtitle">Exatamente um card violeta de destaque por tela</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/brand-accent-card.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>brand-accent-card.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/brand-imagery.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Brand Imagery & Photography</div><div class="card-subtitle">Fotografia corporativa nítida, raio 12-16px, sem filtros</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/brand-imagery.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>brand-imagery.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+
+        <a class="specimen-card" href="guidelines/brand-tagline.card.html" target="_blank">
+          <div class="card-header"><div><div class="card-title">Brand Tagline & Tone</div><div class="card-subtitle">Padrão de imperativos e voz em terceira pessoa</div></div></div>
+          <iframe class="card-preview-frame" src="guidelines/brand-tagline.card.html" scrolling="no"></iframe>
+          <div class="card-footer"><span>brand-tagline.card.html</span><span class="btn-open">Abrir ↗</span></div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>HR Analytics Design System · Baseado no Padrão Google Labs / Stitch · Projeto People Analytics</p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      
+      // Update all embedded iframes too
+      document.querySelectorAll('iframe').forEach(frame => {
+        try {
+          if (frame.contentDocument) {
+            frame.contentDocument.documentElement.setAttribute('data-theme', next);
+          }
+        } catch (e) {}
+      });
+    }
+  </script>
+</body>
+</html>

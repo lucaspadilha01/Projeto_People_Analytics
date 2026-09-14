@@ -33,11 +33,6 @@ table Funcionarios
 		summarizeBy: none
 		sourceColumn: Data Admissão
 
-		variation Variation
-			isDefault
-			relationship: c72e3314-6183-43ff-982a-aa2533b94878
-			defaultHierarchy: LocalDateTable_06f30b67-cbb8-4da2-bb01-0f39d8347dbe.'Hierarquia de datas'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
@@ -65,11 +60,6 @@ table Funcionarios
 		lineageTag: 40424f94-9360-475d-8133-9c7f43208283
 		summarizeBy: none
 		sourceColumn: Data Cargo
-
-		variation Variation
-			isDefault
-			relationship: 7d44ee2c-09a7-4d18-a360-18d06791f42e
-			defaultHierarchy: LocalDateTable_76724093-5ec1-4144-bd01-c887b8a8fef4.'Hierarquia de datas'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -160,12 +150,15 @@ table Funcionarios
 		annotation SummarizationSetBy = Automatic
 
 	column 'Data Nascimento'
-		dataType: string
+		dataType: dateTime
+		formatString: Long Date
 		lineageTag: 0118a954-583b-4dfa-bdd0-84201e69203c
 		summarizeBy: none
 		sourceColumn: Data Nascimento
 
 		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column 'Cód Nacionalidade'
 		dataType: int64
@@ -218,11 +211,6 @@ table Funcionarios
 		summarizeBy: none
 		sourceColumn: Data Salário
 
-		variation Variation
-			isDefault
-			relationship: 3b31beba-bea0-4192-bc42-f6cdd925acbf
-			defaultHierarchy: LocalDateTable_3db60233-f338-4100-b13a-d48ae9318144.'Hierarquia de datas'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
@@ -245,12 +233,15 @@ table Funcionarios
 		annotation SummarizationSetBy = Automatic
 
 	column 'Data Afastamento'
-		dataType: string
+		dataType: dateTime
+		formatString: Long Date
 		lineageTag: a8f3f0b5-1036-46f7-839f-d7a6b0f13c62
 		summarizeBy: none
 		sourceColumn: Data Afastamento
 
 		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column 'Cód Causa Afastamento'
 		dataType: int64
@@ -269,6 +260,148 @@ table Funcionarios
 
 		annotation SummarizationSetBy = Automatic
 
+	column Idade =
+			IF(
+			    ISBLANK('Funcionarios'[Data Nascimento]),
+			    BLANK(),
+			    VAR DataReferencia = IF(ISBLANK('Funcionarios'[Data Afastamento]), DATE(2020,7,31), 'Funcionarios'[Data Afastamento])
+			    RETURN DATEDIFF('Funcionarios'[Data Nascimento], DataReferencia, YEAR)
+			)
+		dataType: int64
+		formatString: 0
+		lineageTag: b1e1a001-0000-4a00-9000-000000000001
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = User
+
+	column 'Faixa Etária Ordem' =
+			IF(
+			    ISBLANK('Funcionarios'[Idade]),
+			    99,
+			    SWITCH(
+			        TRUE(),
+			        'Funcionarios'[Idade] <= 24, 1,
+			        'Funcionarios'[Idade] <= 34, 2,
+			        'Funcionarios'[Idade] <= 44, 3,
+			        'Funcionarios'[Idade] <= 54, 4,
+			        'Funcionarios'[Idade] <= 64, 5,
+			        6
+			    )
+			)
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b1e1a001-0000-4a00-9000-000000000002
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = User
+
+	column 'Faixa Etária' =
+			SWITCH(
+			    'Funcionarios'[Faixa Etária Ordem],
+			    1, "Até 24",
+			    2, "25 a 34",
+			    3, "35 a 44",
+			    4, "45 a 54",
+			    5, "55 a 64",
+			    6, "65 ou mais",
+			    "Não informado"
+			)
+		dataType: string
+		lineageTag: b1e1a001-0000-4a00-9000-000000000003
+		summarizeBy: none
+		sortByColumn: 'Faixa Etária Ordem'
+
+		annotation SummarizationSetBy = User
+
+	column 'Segmento Turnover' =
+			IF(
+			    'Funcionarios'[Situação] <> "Demitido",
+			    BLANK(),
+			    SWITCH(
+			        TRUE(),
+			        'Funcionarios'[Cód Causa Afastamento] = 3
+			            || 'Funcionarios'[Cód Causa Afastamento] = 4
+			            || 'Funcionarios'[Cód Causa Afastamento] = 14, "Ativo",
+			        'Funcionarios'[Cód Causa Afastamento] = 1
+			            || 'Funcionarios'[Cód Causa Afastamento] = 2
+			            || 'Funcionarios'[Cód Causa Afastamento] = 13, "Passivo",
+			        "Espontâneo"
+			    )
+			)
+		dataType: string
+		lineageTag: b1e1a001-0000-4a00-9000-000000000004
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column 'Tempo de Retenção (Dias)' =
+			VAR DataFim = IF(ISBLANK('Funcionarios'[Data Afastamento]), DATE(2020,7,31), 'Funcionarios'[Data Afastamento])
+			RETURN DATEDIFF('Funcionarios'[Data Admissão], DataFim, DAY)
+		dataType: int64
+		formatString: 0
+		lineageTag: b1e1a001-0000-4a00-9000-000000000005
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = User
+
+	column 'Categoria de Retenção Ordem' =
+			SWITCH(
+			    TRUE(),
+			    'Funcionarios'[Tempo de Retenção (Dias)] < 60, 1,
+			    'Funcionarios'[Tempo de Retenção (Dias)] <= 365, 2,
+			    3
+			)
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b1e1a001-0000-4a00-9000-000000000006
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = User
+
+	column 'Categoria de Retenção' =
+			SWITCH(
+			    'Funcionarios'[Categoria de Retenção Ordem],
+			    1, "Menor que 60 dias",
+			    2, "Entre 60 e 365 dias",
+			    3, "Maior que 365 dias"
+			)
+		dataType: string
+		lineageTag: b1e1a001-0000-4a00-9000-000000000007
+		summarizeBy: none
+		sortByColumn: 'Categoria de Retenção Ordem'
+
+		annotation SummarizationSetBy = User
+
+	column 'Má Contratação' = IF('Funcionarios'[Situação] = "Demitido" && 'Funcionarios'[Tempo de Retenção (Dias)] < 60, TRUE(), FALSE())
+		dataType: boolean
+		lineageTag: b1e1a001-0000-4a00-9000-000000000008
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column 'É Gestor' = IF(NOT ISERROR(FIND("GESTOR", UPPER('Funcionarios'[Cargo]), 1, -1)), TRUE(), FALSE())
+		dataType: boolean
+		lineageTag: b1e1a001-0000-4a00-9000-000000000009
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column 'Formação Superior' =
+			IF(
+			    'Funcionarios'[Escolaridade] = "Superior Completo"
+			        || 'Funcionarios'[Escolaridade] = "Pós-Graduação/Espec.Completo"
+			        || 'Funcionarios'[Escolaridade] = "Mestrado Completo",
+			    TRUE(),
+			    FALSE()
+			)
+		dataType: boolean
+		lineageTag: b1e1a001-0000-4a00-9000-000000000010
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
 	partition Planilha1 = m
 		mode: import
 		source =
@@ -276,9 +409,11 @@ table Funcionarios
 				    Fonte = Excel.Workbook(File.Contents("C:\Users\lucas\OneDrive\Área de Trabalho\Analise_dados_google_MD\Projeto_People_Analytics\BaseDados\Funcionarios.xlsx"), null, true),
 				    Planilha1_Sheet = Fonte{[Item="Planilha1",Kind="Sheet"]}[Data],
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Planilha1_Sheet, [PromoteAllScalars=true]),
-				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Cód Funcionário", Int64.Type}, {"Funcionário", type text}, {"Sexo", type text}, {"Data Admissão", type date}, {"Cód Cargo", Int64.Type}, {"Cargo", type text}, {"Data Cargo", type date}, {"Cód Escala", Int64.Type}, {"Escala", type text}, {"Cód C.Custo", type text}, {"Centro Custo", type text}, {"Cód T. Contrato", Int64.Type}, {"Tipo Contrato", type text}, {"Cód Estado Civil", Int64.Type}, {"Estado Civil", type text}, {"Cód Escolaridade", Int64.Type}, {"Escolaridade", type text}, {"Data Nascimento", type any}, {"Cód Nacionalidade", Int64.Type}, {"Nacionalidade", type text}, {"Cód Raça", Int64.Type}, {"Raça", type text}, {"Valor Salário", type number}, {"Data Salário", type date}, {"Cód Situação", Int64.Type}, {"Situação", type text}, {"Data Afastamento", type any}, {"Cód Causa Afastamento", Int64.Type}, {"Causa Afastamento", type text}})
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Cód Funcionário", Int64.Type}, {"Funcionário", type text}, {"Sexo", type text}, {"Data Admissão", type date}, {"Cód Cargo", Int64.Type}, {"Cargo", type text}, {"Data Cargo", type date}, {"Cód Escala", Int64.Type}, {"Escala", type text}, {"Cód C.Custo", type text}, {"Centro Custo", type text}, {"Cód T. Contrato", Int64.Type}, {"Tipo Contrato", type text}, {"Cód Estado Civil", Int64.Type}, {"Estado Civil", type text}, {"Cód Escolaridade", Int64.Type}, {"Escolaridade", type text}, {"Data Nascimento", type any}, {"Cód Nacionalidade", Int64.Type}, {"Nacionalidade", type text}, {"Cód Raça", Int64.Type}, {"Raça", type text}, {"Valor Salário", type number}, {"Data Salário", type date}, {"Cód Situação", Int64.Type}, {"Situação", type text}, {"Data Afastamento", type any}, {"Cód Causa Afastamento", Int64.Type}, {"Causa Afastamento", type text}}),
+				    #"Nulos Substituídos" = Table.ReplaceValue(#"Tipo Alterado", "00/00/0000", null, Replacer.ReplaceValue, {"Data Nascimento", "Data Afastamento"}),
+				    #"Datas Corrigidas" = Table.TransformColumnTypes(#"Nulos Substituídos", {{"Data Nascimento", type date}, {"Data Afastamento", type date}}, "pt-BR")
 				in
-				    #"Tipo Alterado"
+				    #"Datas Corrigidas"
 
 	annotation PBI_NavigationStepName = Navegação
 
