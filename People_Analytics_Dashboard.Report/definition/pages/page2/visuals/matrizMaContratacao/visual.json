@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "matrizMaContratacao",
+  "position": {
+    "x": 26,
+    "y": 500,
+    "z": 2000,
+    "height": 300,
+    "width": 1190,
+    "tabOrder": 13
+  },
+  "visual": {
+    "visualType": "table",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Funcionarios"
+                    }
+                  },
+                  "Property": "Cargo"
+                }
+              },
+              "queryRef": "Funcionarios.Cargo",
+              "nativeQueryRef": "Cargo"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Má Contratação %"
+                }
+              },
+              "queryRef": "_Medidas.Má Contratação %",
+              "nativeQueryRef": "Má Contratação %"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EAEAEC'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Matriz de Má Contratação (%) por Cargo'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

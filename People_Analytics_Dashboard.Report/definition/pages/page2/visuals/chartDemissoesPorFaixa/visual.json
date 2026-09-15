@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "chartDemissoesPorFaixa",
+  "position": {
+    "x": 636,
+    "y": 140,
+    "z": 1000,
+    "height": 340,
+    "width": 600,
+    "tabOrder": 11
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Funcionarios"
+                    }
+                  },
+                  "Property": "Faixa Etária"
+                }
+              },
+              "queryRef": "Funcionarios.Faixa Etária",
+              "nativeQueryRef": "Faixa Etária"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Demissões"
+                }
+              },
+              "queryRef": "_Medidas.Demissões",
+              "nativeQueryRef": "Demissões"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7A60CA'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Demissões por Faixa Etária'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
