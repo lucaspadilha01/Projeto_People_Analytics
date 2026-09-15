@@ -31,21 +31,21 @@
             }
           ]
         },
-        "Values": {
+        "Y": {
           "projections": [
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Funcionarios"
+                      "Entity": "_Medidas"
                     }
                   },
-                  "Property": "Categoria de Retenção"
+                  "Property": "Headcount"
                 }
               },
-              "queryRef": "Funcionarios.Categoria de Retenção",
-              "nativeQueryRef": "Categoria de Retenção",
+              "queryRef": "_Medidas.Headcount",
+              "nativeQueryRef": "Headcount",
               "active": true
             }
           ]
