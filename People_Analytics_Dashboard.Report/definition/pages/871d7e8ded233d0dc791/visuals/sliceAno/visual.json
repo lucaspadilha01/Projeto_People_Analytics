@@ -45,6 +45,26 @@
                 }
               }
             },
+            "defaultValue": {
+              "expr": {
+                "Literal": {
+                  "Value": "null"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "slicerItemContainer": [
+        {
+          "properties": {
+            "outlineWeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "1"
+                }
+              }
+            }
           }
         }
       ],
@@ -62,13 +82,6 @@
               "expr": {
                 "Literal": {
                   "Value": "'Inter'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "11D"
                 }
               }
             }

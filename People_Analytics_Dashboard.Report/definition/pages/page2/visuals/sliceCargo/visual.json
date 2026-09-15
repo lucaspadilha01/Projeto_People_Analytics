@@ -38,6 +38,13 @@
       "general": [
         {
           "properties": {
+            "defaultValue": {
+              "expr": {
+                "Literal": {
+                  "Value": "null"
+                }
+              }
+            },
             "selfFilterEnabled": {
               "expr": {
                 "Literal": {
@@ -62,37 +69,6 @@
               "expr": {
                 "Literal": {
                   "Value": "'Inter'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "11D"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#71727C'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "search": [
-        {
-          "properties": {
-            "enabled": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             }

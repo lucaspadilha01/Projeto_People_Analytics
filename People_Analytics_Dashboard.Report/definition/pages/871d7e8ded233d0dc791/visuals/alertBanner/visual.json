@@ -44,35 +44,6 @@
             ]
           }
         }
-      ],
-      "shape": [
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FBE9E8'"
-                    }
-                  }
-                }
-              }
-            },
-            "line": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#DC5B54'"
-                    }
-                  }
-                },
-                "width": 2
-              }
-            }
-          }
-        }
       ]
     }
   }

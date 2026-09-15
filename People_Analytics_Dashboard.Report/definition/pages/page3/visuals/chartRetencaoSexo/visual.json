@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Funcionarios.Sexo",
-              "nativeQueryRef": "Sexo"
+              "nativeQueryRef": "Sexo",
+              "active": true
             }
           ]
         },

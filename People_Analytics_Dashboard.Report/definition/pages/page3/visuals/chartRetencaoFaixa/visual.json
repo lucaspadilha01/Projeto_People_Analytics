@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Funcionarios.Faixa Etária",
-              "nativeQueryRef": "Faixa Etária"
+              "nativeQueryRef": "Faixa Etária",
+              "active": true
             }
           ]
         },

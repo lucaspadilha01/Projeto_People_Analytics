@@ -38,13 +38,20 @@
       "general": [
         {
           "properties": {
+            "defaultValue": {
+              "expr": {
+                "Literal": {
+                  "Value": "null"
+                }
+              }
+            },
             "selfFilterEnabled": {
               "expr": {
                 "Literal": {
                   "Value": "true"
                 }
               }
-            },
+            }
           }
         }
       ],
@@ -62,13 +69,6 @@
               "expr": {
                 "Literal": {
                   "Value": "'Inter'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "11D"
                 }
               }
             }

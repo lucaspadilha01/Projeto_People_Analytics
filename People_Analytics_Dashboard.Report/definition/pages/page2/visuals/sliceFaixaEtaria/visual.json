@@ -38,6 +38,13 @@
       "general": [
         {
           "properties": {
+            "defaultValue": {
+              "expr": {
+                "Literal": {
+                  "Value": "null"
+                }
+              }
+            },
             "selfFilterEnabled": {
               "expr": {
                 "Literal": {
@@ -45,8 +52,7 @@
                 }
               }
             },
-            "type": {"expr": {"Literal": {"Value": "'List'"}}},
-          "orientation": {
+            "orientation": {
               "expr": {
                 "Literal": {
                   "Value": "1D"
@@ -72,24 +78,6 @@
                   "Value": "'Inter'"
                 }
               }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "11D"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#71727C'"
-                    }
-                  }
-                }
-              }
             }
           }
         }
@@ -101,13 +89,6 @@
               "expr": {
                 "Literal": {
                   "Value": "'Inter'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "12D"
                 }
               }
             }

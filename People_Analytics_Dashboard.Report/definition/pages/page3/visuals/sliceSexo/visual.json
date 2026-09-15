@@ -38,23 +38,17 @@
       "general": [
         {
           "properties": {
+            "defaultValue": {
+              "expr": {
+                "Literal": {
+                  "Value": "null"
+                }
+              }
+            },
             "selfFilterEnabled": {
               "expr": {
                 "Literal": {
                   "Value": "true"
-                }
-              }
-            },
-          }
-        }
-      ],
-      "orientation": [
-        {
-          "properties": {
-            "orientation": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
                 }
               }
             }

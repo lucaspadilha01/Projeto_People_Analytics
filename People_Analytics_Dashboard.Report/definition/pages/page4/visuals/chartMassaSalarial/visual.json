@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Calendario.Ano-Mês Label",
-              "nativeQueryRef": "Ano-Mês Label"
+              "nativeQueryRef": "Ano-Mês Label",
+              "active": true
             }
           ]
         },
