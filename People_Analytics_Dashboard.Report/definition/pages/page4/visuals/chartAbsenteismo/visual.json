@@ -185,6 +185,20 @@
             }
           ]
         }
+      },
+      {
+        "name": "1b84b2d1e6a94403c1e1",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "% Absenteísmo"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

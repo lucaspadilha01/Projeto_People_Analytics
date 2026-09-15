@@ -1,19 +1,19 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "matrizMaContratacao",
+  "name": "tabelaLeque",
   "position": {
-    "x": 40.186046511627907,
-    "y": 499.81395348837208,
-    "z": 4000,
+    "x": 1640,
+    "y": 496,
+    "z": 2000,
     "height": 300,
-    "width": 1190,
-    "tabOrder": 7000
+    "width": 560,
+    "tabOrder": 14
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "table",
     "query": {
       "queryState": {
-        "Values": {
+        "Rows": {
           "projections": [
             {
               "field": {
@@ -27,35 +27,40 @@
                 }
               },
               "queryRef": "Funcionarios.Cargo",
-              "nativeQueryRef": "Cargo"
+              "nativeQueryRef": "Cargo",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Funcionarios"
+                    }
+                  },
+                  "Property": "Min Salário"
+                }
+              },
+              "queryRef": "Funcionarios.Min Salário",
+              "nativeQueryRef": "Min Salário"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "_Medidas"
-                    }
-                  },
-                  "Property": "Massa Salarial"
-                }
-              },
-              "queryRef": "_Medidas.Massa Salarial",
-              "nativeQueryRef": "Massa Salarial"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
                       "Entity": "Funcionarios"
                     }
                   },
-                  "Property": "Faixa Etária"
+                  "Property": "Max Salário"
                 }
               },
-              "queryRef": "Funcionarios.Faixa Etária",
-              "nativeQueryRef": "Faixa Etária"
+              "queryRef": "Funcionarios.Max Salário",
+              "nativeQueryRef": "Max Salário"
             }
           ]
         }
@@ -73,15 +78,24 @@
                 "Property": "Cargo"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
-        ]
+        ],
+        "isDefaultSort": true
       }
     },
     "objects": {
       "general": [
         {
-          "properties": {}
+          "properties": {
+            "outlineWeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "1"
+                }
+              }
+            }
+          }
         }
       ]
     },
@@ -99,7 +113,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Matriz de Má Contratação (%) por Cargo'"
+                  "Value": "'Leque Salarial por Cargo'"
                 }
               }
             }
@@ -107,51 +121,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "e5b21fb0b7e2d330b016",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Funcionarios"
-              }
-            },
-            "Property": "Cargo"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "c7010ff5b805ce184e39",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Massa Salarial"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f86216047d7500dc8ab5",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Funcionarios"
-              }
-            },
-            "Property": "Faixa Etária"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

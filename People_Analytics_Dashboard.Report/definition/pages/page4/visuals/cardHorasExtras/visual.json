@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "cardLeque",
+  "name": "cardHorasExtras",
   "position": {
-    "x": 836,
-    "y": 496,
-    "z": 4000,
-    "height": 140,
-    "width": 260,
-    "tabOrder": 7000
+    "x": 1640,
+    "y": 140,
+    "z": 6000,
+    "height": 320,
+    "width": 560,
+    "tabOrder": 11
   },
   "visual": {
     "visualType": "card",
@@ -23,17 +23,55 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "Leque Salarial"
+                  "Property": "% Horas Extras"
                 }
               },
-              "queryRef": "_Medidas.Leque Salarial",
-              "nativeQueryRef": "Leque Salarial"
+              "queryRef": "_Medidas.% Horas Extras",
+              "nativeQueryRef": "% Horas Extras"
             }
           ]
         }
       }
     },
     "objects": {
+      "categoryLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Inter'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#71727C'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
       "labels": [
         {
           "properties": {
@@ -51,7 +89,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "48D"
+                  "Value": "32D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Inter'"
                 }
               }
             }
@@ -73,7 +118,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Leque Salarial'"
+                  "Value": "'% Horas Extras'"
                 }
               }
             }

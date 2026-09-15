@@ -2,18 +2,18 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "cardTecnicidade",
   "position": {
-    "x": 1106,
-    "y": 496,
+    "x": 1920,
+    "y": 800,
     "z": 5000,
-    "height": 140,
-    "width": 260,
-    "tabOrder": 9000
+    "height": 280,
+    "width": 280,
+    "tabOrder": 15
   },
   "visual": {
-    "visualType": "card",
+    "visualType": "donutChart",
     "query": {
       "queryState": {
-        "Values": {
+        "Legend": {
           "projections": [
             {
               "field": {
@@ -27,17 +27,36 @@
                 }
               },
               "queryRef": "_Medidas.Índice de Tecnicidade",
-              "nativeQueryRef": "Índice de Tecnicidade"
+              "nativeQueryRef": "Índice de Tecnicidade",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Headcount"
+                }
+              },
+              "queryRef": "_Medidas.Headcount",
+              "nativeQueryRef": "Headcount"
             }
           ]
         }
       }
     },
     "objects": {
-      "labels": [
+      "dataPoint": [
         {
           "properties": {
-            "color": {
+            "fill": {
               "solid": {
                 "color": {
                   "expr": {
@@ -47,11 +66,19 @@
                   }
                 }
               }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "48D"
+            }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CFC4EC'"
+                    }
+                  }
                 }
               }
             }

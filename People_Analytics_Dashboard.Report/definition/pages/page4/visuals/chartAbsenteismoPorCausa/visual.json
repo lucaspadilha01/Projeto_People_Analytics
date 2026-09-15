@@ -7,7 +7,7 @@
     "z": 1000,
     "height": 300,
     "width": 1084,
-    "tabOrder": 8000
+    "tabOrder": 13
   },
   "visual": {
     "visualType": "table",
@@ -87,29 +87,15 @@
     "objects": {
       "general": [
         {
-          "properties": {}
-        }
-      ],
-      "columnHeaders": [
-        {
           "properties": {
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#111218'"
-                    }
-                  }
+            "outlineWeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "1"
                 }
               }
             }
           }
-        }
-      ],
-      "values": [
-        {
-          "properties": {}
         }
       ]
     },
@@ -127,7 +113,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Absenteísmo por Causa'"
+                  "Value": "'Absenteísmo por Causa (Horas x R$)'"
                 }
               }
             }
@@ -135,23 +121,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "94ca6a36961d444a4d18",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Absenteísmo"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
