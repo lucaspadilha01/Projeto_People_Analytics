@@ -45,7 +45,7 @@
                 }
               }
             },
-            "type": {"expr": {"Literal": {"Value": "'Dropdown'"}}},
+            "type": {"expr": {"Literal": {"Value": "'List'"}}},
           "orientation": {
               "expr": {
                 "Literal": {

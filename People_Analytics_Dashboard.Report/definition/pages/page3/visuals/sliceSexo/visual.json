@@ -48,7 +48,7 @@
             "type": {
               "expr": {
                 "Literal": {
-                  "Value": "'Dropdown'"
+                  "Value": "'List'"
                 }
               }
             }
