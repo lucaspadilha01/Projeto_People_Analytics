@@ -2,18 +2,18 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "matrizMaContratacao",
   "position": {
-    "x": 26,
-    "y": 500,
+    "x": 40.186046511627907,
+    "y": 499.81395348837208,
     "z": 4000,
     "height": 300,
     "width": 1190,
     "tabOrder": 7000
   },
   "visual": {
-    "visualType": "clusteredBarChart",
+    "visualType": "tableEx",
     "query": {
       "queryState": {
-        "Category": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -27,13 +27,8 @@
                 }
               },
               "queryRef": "Funcionarios.Cargo",
-              "nativeQueryRef": "Cargo",
-              "active": true
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
+              "nativeQueryRef": "Cargo"
+            },
             {
               "field": {
                 "Measure": {
@@ -47,6 +42,20 @@
               },
               "queryRef": "_Medidas.Massa Salarial",
               "nativeQueryRef": "Massa Salarial"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Funcionarios"
+                    }
+                  },
+                  "Property": "Faixa Etária"
+                }
+              },
+              "queryRef": "Funcionarios.Faixa Etária",
+              "nativeQueryRef": "Faixa Etária"
             }
           ]
         }
@@ -55,20 +64,34 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "_Medidas"
+                    "Entity": "Funcionarios"
                   }
                 },
-                "Property": "Massa Salarial"
+                "Property": "Cargo"
               }
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "outlineWeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "1"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "title": [
@@ -92,5 +115,51 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e5b21fb0b7e2d330b016",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Funcionarios"
+              }
+            },
+            "Property": "Cargo"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c7010ff5b805ce184e39",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Massa Salarial"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f86216047d7500dc8ab5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Funcionarios"
+              }
+            },
+            "Property": "Faixa Etária"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

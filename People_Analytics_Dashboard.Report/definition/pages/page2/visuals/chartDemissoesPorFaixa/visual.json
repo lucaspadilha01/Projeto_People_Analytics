@@ -93,5 +93,37 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "cc7e149f8bad89063168",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Funcionarios"
+              }
+            },
+            "Property": "Faixa Etária"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f993d64852dc0e20d689",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Demissões"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
