@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "sliceMes",
   "position": {
-    "x": 1510,
-    "y": 75,
+    "x": 1460,
+    "y": 78,
     "z": 6000,
-    "height": 70,
-    "width": 370,
+    "height": 40,
+    "width": 420,
     "tabOrder": 2
   },
   "visual": {
@@ -23,11 +23,11 @@
                       "Entity": "Calendario"
                     }
                   },
-                  "Property": "Mês"
+                  "Property": "Mês Completo"
                 }
               },
-              "queryRef": "Calendario.Mês",
-              "nativeQueryRef": "Mês",
+              "queryRef": "Calendario.Mês Completo",
+              "nativeQueryRef": "Mês Completo",
               "active": true
             }
           ]
@@ -38,23 +38,68 @@
       "general": [
         {
           "properties": {
-            "orientation": {
+            "selfFilterEnabled": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "true"
                 }
               }
             }
           }
         }
       ],
-      "data": [
+      "header": [
         {
           "properties": {
-            "mode": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "'Basic'"
+                  "Value": "true"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Inter'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#71727C'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "items": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Inter'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
                 }
               }
             }
@@ -69,14 +114,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Mês'"
+                  "Value": "false"
                 }
               }
             }
