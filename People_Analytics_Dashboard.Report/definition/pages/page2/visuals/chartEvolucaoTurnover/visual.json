@@ -27,11 +27,12 @@
                 }
               },
               "queryRef": "Calendario.Ano",
-              "nativeQueryRef": "Ano"
+              "nativeQueryRef": "Ano",
+              "active": true
             }
           ]
         },
-        "Values": {
+        "Y": {
           "projections": [
             {
               "field": {

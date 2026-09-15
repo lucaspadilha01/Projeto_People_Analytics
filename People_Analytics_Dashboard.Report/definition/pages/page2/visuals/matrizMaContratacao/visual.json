@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Funcionarios.Cargo",
-              "nativeQueryRef": "Cargo"
+              "nativeQueryRef": "Cargo",
+              "active": true
             }
           ]
         },
