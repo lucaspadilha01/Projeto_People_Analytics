@@ -45,8 +45,20 @@
                 }
               }
             },
-            "type": {"expr": {"Literal": {"Value": "'Dropdown'"}}},
-          "orientation": {
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "orientation": [
+        {
+          "properties": {
+            "orientation": {
               "expr": {
                 "Literal": {
                   "Value": "1D"
