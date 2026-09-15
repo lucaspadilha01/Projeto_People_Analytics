@@ -208,7 +208,7 @@ table _Medidas
 
 	measure 'R$ Absenteísmo' =
 			CALCULATE(
-			    SUM('BaseDados'[Valor]),
+			    SUM('BaseDados'[ Valor]),
 			    'BaseDados'[Categoria de Evento] = "Faltas"
 			        || 'BaseDados'[Categoria de Evento] = "Atraso"
 			        || 'BaseDados'[Categoria de Evento] = "Atestado"

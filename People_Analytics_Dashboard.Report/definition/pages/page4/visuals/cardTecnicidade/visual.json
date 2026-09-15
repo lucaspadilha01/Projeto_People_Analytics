@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "cardTecnicidade",
   "position": {
-    "x": 1592,
-    "y": 140,
+    "x": 1285.953488372093,
+    "y": 0,
     "z": 5000,
-    "height": 320,
-    "width": 298,
+    "height": 126.83720930232559,
+    "width": 270,
     "tabOrder": 15
   },
   "visual": {
@@ -126,5 +126,23 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "de3b6665cdabb5bb60e3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Índice de Tecnicidade"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "chartHoras",
   "position": {
-    "x": 836.37209302325584,
-    "y": 139.3953488372093,
+    "x": 826.32558139534888,
+    "y": 126.83720930232559,
     "z": 2000,
     "height": 336.55813953488371,
     "width": 1083.7674418604652,
@@ -214,6 +214,34 @@
             }
           ]
         }
+      },
+      {
+        "name": "739933e64d47db04a7a2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Horas Normais"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "dc97ad705081a33a84d2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Horas Extras"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }
