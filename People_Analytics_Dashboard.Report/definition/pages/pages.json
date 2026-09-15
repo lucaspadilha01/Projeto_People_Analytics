@@ -2,7 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
   "pageOrder": [
     "871d7e8ded233d0dc791",
-    "page2"
+    "page2",
+    "page3"
   ],
   "activePageName": "871d7e8ded233d0dc791"
 }

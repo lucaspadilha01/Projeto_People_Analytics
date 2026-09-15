@@ -1,0 +1,63 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "insightTile2",
+  "position": {
+    "x": 1274,
+    "y": 590,
+    "z": 100,
+    "height": 80,
+    "width": 646,
+    "tabOrder": 16
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "⚠️ Risco de Perda Precoce",
+                    "textStyle": {
+                      "fontSize": "13px",
+                      "fontFamily": "Inter",
+                      "color": "#DC5B54",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "18% dos colaboradores saem nos primeiros 60 dias",
+                    "textStyle": {
+                      "fontSize": "12px",
+                      "fontFamily": "Inter",
+                      "color": "#71727C"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Ação: Revisar processo de onboarding e integração.",
+                    "textStyle": {
+                      "fontSize": "11px",
+                      "fontFamily": "Inter",
+                      "color": "#DC5B54",
+                      "fontWeight": "600"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

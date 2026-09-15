@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "matrizDriversRetenção",
+  "position": {
+    "x": 650,
+    "y": 500,
+    "z": 2000,
+    "height": 340,
+    "width": 624,
+    "tabOrder": 14
+  },
+  "visual": {
+    "visualType": "table",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Funcionarios"
+                    }
+                  },
+                  "Property": "Escolaridade"
+                }
+              },
+              "queryRef": "Funcionarios.Escolaridade",
+              "nativeQueryRef": "Escolaridade"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Tempo Médio de Retenção (Dias)"
+                }
+              },
+              "queryRef": "_Medidas.Tempo Médio de Retenção (Dias)",
+              "nativeQueryRef": "Tempo Médio de Retenção (Dias)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EAEAEC'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tempo Médio de Retenção por Escolaridade'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

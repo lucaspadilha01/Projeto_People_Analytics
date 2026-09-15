@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "chartRetencaoSexo",
+  "position": {
+    "x": 26,
+    "y": 140,
+    "z": 1000,
+    "height": 340,
+    "width": 614,
+    "tabOrder": 10
+  },
+  "visual": {
+    "visualType": "stackedBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Funcionarios"
+                    }
+                  },
+                  "Property": "Sexo"
+                }
+              },
+              "queryRef": "Funcionarios.Sexo",
+              "nativeQueryRef": "Sexo"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Funcionarios"
+                    }
+                  },
+                  "Property": "Categoria de Retenção"
+                }
+              },
+              "queryRef": "Funcionarios.Categoria de Retenção",
+              "nativeQueryRef": "Categoria de Retenção",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Retenção por Sexo'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
