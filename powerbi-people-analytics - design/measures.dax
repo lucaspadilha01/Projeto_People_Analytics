@@ -1,0 +1,247 @@
+// =====================================================================
+//  People_Analytics_Dashboard — modelo
+//  Colunas calculadas, tabelas calculadas e as 18 medidas do glossário.
+//
+//  ATENÇÃO aos nomes de coluna: o spec registra espaços parasitas em
+//  BaseDados['Matricula '] e BaseDados[' Mês Pag. ']. Os nomes abaixo
+//  assumem que esses espaços FORAM REMOVIDOS no Power Query (renomear
+//  para 'Matricula' e 'Mês Pag.'). Se optar por manter, reponha os
+//  espaços exatamente — DAX não os tolera aproximadamente.
+// =====================================================================
+
+
+// ---------------------------------------------------------------------
+//  1. TABELAS CALCULADAS
+// ---------------------------------------------------------------------
+
+// Calendário dedicado. Substitui as date tables automáticas (desligue
+// Opções > Carregamento de Dados > Data/Hora automática).
+Calendario =
+VAR _min = MINX ( BaseDados, BaseDados[Mês Pag.] )
+VAR _max = MAXX ( BaseDados, BaseDados[Mês Pag.] )
+VAR _inicio = DATE ( YEAR ( MIN ( _min, MINX ( Funcionarios, Funcionarios[Data Admissão] ) ) ), 1, 1 )
+VAR _fim    = DATE ( YEAR ( _max ), 12, 31 )
+RETURN
+ADDCOLUMNS (
+    CALENDAR ( _inicio, _fim ),
+    "Ano",          YEAR ( [Date] ),
+    "Nº Mês",       MONTH ( [Date] ),
+    "Mês",          FORMAT ( [Date], "mmm", "pt-BR" ),
+    "Mês Completo", FORMAT ( [Date], "mmmm", "pt-BR" ),
+    "Ano-Mês",      FORMAT ( [Date], "yyyy-mm" ),
+    "Ano-Mês Label", FORMAT ( [Date], "mmm/yy", "pt-BR" ),
+    "Trimestre",    "T" & QUARTER ( [Date] ),
+    "Nº Dia Semana", WEEKDAY ( [Date], 2 ),
+    "Dia Semana",   FORMAT ( [Date], "ddd", "pt-BR" ),
+    "Fim de Semana", WEEKDAY ( [Date], 2 ) > 5,
+    "É Feriado",    NOT ISBLANK ( LOOKUPVALUE ( dFeriados[Data], dFeriados[Data], [Date] ) ),
+    "Dia Útil",
+        WEEKDAY ( [Date], 2 ) <= 5
+            && ISBLANK ( LOOKUPVALUE ( dFeriados[Data], dFeriados[Data], [Date] ) )
+)
+// Depois: renomeie [Date] para [Data]; marque como tabela de datas em [Data];
+// ordene [Mês] por [Nº Mês] e [Dia Semana] por [Nº Dia Semana].
+
+
+// ---------------------------------------------------------------------
+//  2. COLUNAS CALCULADAS — Funcionarios
+// ---------------------------------------------------------------------
+
+Funcionarios[Faixa Etária] =
+VAR _idade = DATEDIFF ( Funcionarios[Data Nascimento], TODAY (), YEAR )
+RETURN
+SWITCH (
+    TRUE (),
+    ISBLANK ( Funcionarios[Data Nascimento] ), "Não informado",
+    _idade < 25, "18–24 anos",
+    _idade < 35, "25–34 anos",
+    _idade < 45, "35–44 anos",
+    _idade < 55, "45–54 anos",
+    "55+ anos"
+)
+
+Funcionarios[Nº Faixa Etária] =            -- sort-by-column da coluna acima
+SWITCH (
+    Funcionarios[Faixa Etária],
+    "18–24 anos", 1, "25–34 anos", 2, "35–44 anos", 3,
+    "45–54 anos", 4, "55+ anos", 5, 9
+)
+
+Funcionarios[Tempo de Retenção (dias)] =
+DATEDIFF (
+    Funcionarios[Data Admissão],
+    COALESCE ( Funcionarios[Data Afastamento], TODAY () ),
+    DAY
+)
+
+Funcionarios[Categoria de Retenção] =
+SWITCH (
+    TRUE (),
+    Funcionarios[Tempo de Retenção (dias)] < 60,  "< 60 dias",
+    Funcionarios[Tempo de Retenção (dias)] <= 365, "60–365 dias",
+    "> 365 dias"
+)
+
+Funcionarios[Nº Categoria de Retenção] =   -- sort-by-column
+SWITCH (
+    Funcionarios[Categoria de Retenção],
+    "< 60 dias", 1, "60–365 dias", 2, "> 365 dias", 3
+)
+
+// Regra do case: Ativo = 3,4,14 · Passivo = 1,2,13 · Espontâneo = demais.
+Funcionarios[Segmento de Turnover] =
+SWITCH (
+    TRUE (),
+    ISBLANK ( Funcionarios[Data Afastamento] ), "Ativo no quadro",
+    Funcionarios[Cód Causa Afastamento] IN { 3, 4, 14 },  "Ativo",
+    Funcionarios[Cód Causa Afastamento] IN { 1, 2, 13 },  "Passivo",
+    "Espontâneo"
+)
+// "Ativo" (turnover por iniciativa da empresa) colide com "Ativo no quadro".
+// Se preferir, renomeie os rótulos para "Involuntário / Contratual / Voluntário"
+// e ajuste as medidas abaixo — a nomenclatura do case foi mantida por fidelidade.
+
+Funcionarios[É Cargo Técnico] =            -- insumo do Índice de Tecnicidade
+Funcionarios[Escolaridade] IN { "Técnico", "Superior", "Pós-graduação" }
+// ⚠️ Confirmar com o cliente: tecnicidade se define por escolaridade ou por
+// uma lista de cargos? Veja "Perguntas em aberto" no IMPLEMENTATION.md.
+
+
+// ---------------------------------------------------------------------
+//  3. MEDIDAS — quadro de pessoas
+// ---------------------------------------------------------------------
+
+Contratações =
+CALCULATE (
+    COUNTROWS ( Funcionarios ),
+    USERELATIONSHIP ( Calendario[Data], Funcionarios[Data Admissão] )
+)
+
+Demissões =
+CALCULATE (
+    COUNTROWS ( Funcionarios ),
+    USERELATIONSHIP ( Calendario[Data], Funcionarios[Data Afastamento] )
+)
+
+// Ativos no último dia do contexto de datas. REMOVEFILTERS ( Calendario )
+// é necessário porque headcount é um saldo, não uma soma do período.
+Headcount =
+VAR _fim = MAX ( Calendario[Data] )
+RETURN
+CALCULATE (
+    COUNTROWS ( Funcionarios ),
+    REMOVEFILTERS ( Calendario ),
+    Funcionarios[Data Admissão] <= _fim,
+    ISBLANK ( Funcionarios[Data Afastamento] ) || Funcionarios[Data Afastamento] > _fim
+)
+
+Headcount Médio =
+AVERAGEX ( VALUES ( Calendario[Ano-Mês] ), [Headcount] )
+
+Turnover Ativo      = CALCULATE ( [Demissões], Funcionarios[Segmento de Turnover] = "Ativo" )
+Turnover Passivo    = CALCULATE ( [Demissões], Funcionarios[Segmento de Turnover] = "Passivo" )
+Turnover Espontâneo = CALCULATE ( [Demissões], Funcionarios[Segmento de Turnover] = "Espontâneo" )
+
+// Turnover demissional = saídas por iniciativa da empresa ÷ headcount médio.
+Turnover Demissional % =
+DIVIDE ( [Turnover Ativo], [Headcount Médio] )
+
+Má Contratação # =
+CALCULATE ( [Demissões], Funcionarios[Categoria de Retenção] = "< 60 dias" )
+
+Má Contratação % =
+DIVIDE ( [Má Contratação #], [Contratações] )
+
+Tempo de Retenção (dias) =
+AVERAGE ( Funcionarios[Tempo de Retenção (dias)] )
+
+
+// ---------------------------------------------------------------------
+//  4. MEDIDAS — folha, horas e absenteísmo
+//  Todas dependem da dimensão dEvento (ver IMPLEMENTATION.md, Fase 2).
+//  Nunca filtre por código de evento literal dentro da medida — a
+//  classificação vive em dEvento e muda sem reescrever DAX.
+// ---------------------------------------------------------------------
+
+Massa Salarial =
+CALCULATE ( SUM ( BaseDados[Valor] ), dEvento[Grupo] = "Remuneração" )
+
+Horas Normais =
+CALCULATE ( SUM ( BaseDados[Horas] ), dEvento[Categoria] = "Horas Normais" )
+
+Horas Extras =
+CALCULATE ( SUM ( BaseDados[Horas] ), dEvento[Categoria] = "Horas Extras" )
+
+% Horas Extras =
+DIVIDE ( [Horas Extras], [Horas Normais] + [Horas Extras] )
+
+Absenteísmo =
+CALCULATE ( SUM ( BaseDados[Horas] ), dEvento[Grupo] = "Absenteísmo" )
+
+// Horas previstas = trabalhadas + perdidas. Se a empresa tiver jornada
+// contratual na base, troque o denominador por ela — é mais fiel.
+% Absenteísmo =
+DIVIDE ( [Absenteísmo], [Horas Normais] + [Absenteísmo] )
+
+
+// ---------------------------------------------------------------------
+//  5. MEDIDAS — equidade e qualificação
+// ---------------------------------------------------------------------
+
+// Leque salarial = maior ÷ menor salário do grupo em contexto.
+Leque Salarial =
+VAR _maior = MAX ( Funcionarios[Salário] )
+VAR _menor = MIN ( Funcionarios[Salário] )
+RETURN
+DIVIDE ( _maior, _menor )
+
+Salário Médio = AVERAGE ( Funcionarios[Salário] )
+
+Massa Salarial de Gestores =
+CALCULATE (
+    [Massa Salarial],
+    TREATAS ( VALUES ( dCargoGestao[Cargo] ), Funcionarios[Cargo] )
+)
+// ⚠️ Exige a lista de cargos de gestão (tabela dCargoGestao). O case pede
+// "massa salarial dos gestores" mas não define quem é gestor.
+
+Índice de Tecnicidade =
+VAR _fim = MAX ( Calendario[Data] )
+VAR _tecnicos =
+    CALCULATE (
+        COUNTROWS ( Funcionarios ),
+        REMOVEFILTERS ( Calendario ),
+        Funcionarios[É Cargo Técnico] = TRUE (),
+        Funcionarios[Data Admissão] <= _fim,
+        ISBLANK ( Funcionarios[Data Afastamento] ) || Funcionarios[Data Afastamento] > _fim
+    )
+RETURN
+DIVIDE ( _tecnicos, [Headcount] )
+
+
+// ---------------------------------------------------------------------
+//  6. MEDIDAS DE APOIO — rótulos que respondem perguntas do case
+//  O case pede "qual foi o mês/ano de X". Uma medida de rótulo evita
+//  que o leitor tenha que ler o gráfico.
+// ---------------------------------------------------------------------
+
+Ano de Pico de Contratações =
+VAR _t = ADDCOLUMNS ( ALLSELECTED ( Calendario[Ano] ), "@n", [Contratações] )
+RETURN
+MAXX ( TOPN ( 1, _t, [@n], DESC ), Calendario[Ano] )
+
+Mês de Menor Absenteísmo =
+VAR _t = ADDCOLUMNS ( ALLSELECTED ( Calendario[Ano-Mês Label] ), "@p", [% Absenteísmo] )
+VAR _t2 = FILTER ( _t, [@p] > 0 )
+RETURN
+MAXX ( TOPN ( 1, _t2, [@p], ASC ), Calendario[Ano-Mês Label] )
+
+Escolaridade com Mais Horas Extras =
+VAR _t = ADDCOLUMNS ( ALLSELECTED ( Funcionarios[Escolaridade] ), "@h", [Horas Extras] )
+RETURN
+MAXX ( TOPN ( 1, _t, [@h], DESC ), Funcionarios[Escolaridade] )
+
+Causa de Absenteísmo Principal =
+VAR _t = ADDCOLUMNS ( ALLSELECTED ( dEvento[Descrição] ), "@h", [Absenteísmo] )
+RETURN
+MAXX ( TOPN ( 1, _t, [@h], DESC ), dEvento[Descrição] )

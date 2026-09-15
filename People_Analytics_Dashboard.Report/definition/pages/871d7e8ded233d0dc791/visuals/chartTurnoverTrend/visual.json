@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "chartTurnoverTrend",
   "position": {
-    "x": 664.32558139534888,
-    "y": 268.74418604651163,
-    "z": 0,
+    "x": 650.51162790697606,
+    "y": 409.39534883720916,
+    "z": 1000,
     "height": 380,
     "width": 590,
-    "tabOrder": 8
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "lineChart",
@@ -110,51 +110,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "c99ad910d5aa36b00942",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Calendario"
-              }
-            },
-            "Property": "Ano"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "fc4a5c756383bd966186",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Turnover Demissional %"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "3624725201dcbbb96601",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Turnover Ativo"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

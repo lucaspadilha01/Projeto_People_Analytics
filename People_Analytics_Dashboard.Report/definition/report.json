@@ -11,7 +11,7 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "HRAnalyticsViolet",
+      "name": "HR_Analytics___People_Analytic5908932345766135.json",
       "reportVersionAtImport": {
         "visual": "2.12.0",
         "report": "3.4.0",
@@ -52,8 +52,8 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "HRAnalyticsViolet",
-          "path": "HRAnalyticsViolet",
+          "name": "HR_Analytics___People_Analytic5908932345766135.json",
+          "path": "HR_Analytics___People_Analytic5908932345766135.json",
           "type": "CustomTheme"
         }
       ]

@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "kpiTurnover",
   "position": {
-    "x": 500,
-    "y": 90,
-    "z": 0,
-    "width": 440,
+    "x": 486.18604651162792,
+    "y": 230.65116279069755,
+    "z": 6000,
     "height": 160,
-    "tabOrder": 1
+    "width": 440,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "card",
@@ -28,6 +28,24 @@
               },
               "queryRef": "_Medidas.Turnover Demissional %",
               "nativeQueryRef": "Turnover Demissional %"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Delta Turnover Demissional %"
+                }
+              },
+              "queryRef": "_Medidas.Delta Turnover Demissional %",
+              "nativeQueryRef": "Delta Turnover Demissional %"
             }
           ]
         }

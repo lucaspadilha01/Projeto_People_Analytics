@@ -178,6 +178,34 @@ table _Medidas
 		formatString: #,0
 		lineageTag: e1e1a001-0000-4a00-9000-000000000019
 
+	measure 'Delta Headcount %' =
+			VAR _atual = [Headcount]
+			VAR _anterior = [Headcount Período Anterior]
+			RETURN DIVIDE(_atual - _anterior, _anterior)
+		formatString: 0.0%
+		lineageTag: e1e1a001-0000-4a00-9000-000000000020
+
+	measure 'Delta Turnover Demissional %' =
+			VAR _atual = [Turnover Demissional %]
+			VAR _anterior = [Turnover Demissional %]
+			RETURN _atual - _anterior
+		formatString: 0.00%
+		lineageTag: e1e1a001-0000-4a00-9000-000000000021
+
+	measure 'Delta Massa Salarial %' =
+			VAR _atual = [Massa Salarial]
+			VAR _anterior = CALCULATE([Massa Salarial], DATEADD('Calendario'[Date], -1, YEAR))
+			RETURN DIVIDE(_atual - _anterior, _anterior)
+		formatString: 0.0%
+		lineageTag: e1e1a001-0000-4a00-9000-000000000022
+
+	measure 'Delta Absenteísmo %' =
+			VAR _atual = [% Absenteísmo]
+			VAR _anterior = CALCULATE([% Absenteísmo], DATEADD('Calendario'[Date], -1, MONTH))
+			RETURN _atual - _anterior
+		formatString: 0.00%
+		lineageTag: e1e1a001-0000-4a00-9000-000000000023
+
 	column Medidas
 		lineageTag: 1af547a2-6025-46db-b057-0e1750dddd8b
 		isNameInferred

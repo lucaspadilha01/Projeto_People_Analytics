@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "kpiAbsenteismo",
   "position": {
-    "x": 1420,
-    "y": 90,
-    "z": 0,
-    "width": 440,
+    "x": 1406.1860465116285,
+    "y": 230.65116279069755,
+    "z": 3000,
     "height": 160,
-    "tabOrder": 3
+    "width": 440,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "card",
@@ -28,6 +28,24 @@
               },
               "queryRef": "_Medidas.% Absenteísmo",
               "nativeQueryRef": "% Absenteísmo"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Delta Absenteísmo %"
+                }
+              },
+              "queryRef": "_Medidas.Delta Absenteísmo %",
+              "nativeQueryRef": "Delta Absenteísmo %"
             }
           ]
         }
@@ -119,5 +137,23 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9a62f9c8a50979021ae4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "% Absenteísmo"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

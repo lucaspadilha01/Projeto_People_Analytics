@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "sliceMes",
   "position": {
-    "x": 440.7906976744186,
-    "y": 705.76744186046517,
-    "z": 0,
-    "height": 374.23255813953489,
-    "width": 606.55813953488371,
-    "tabOrder": 6
+    "x": 531.20930232558146,
+    "y": 38.930232558139537,
+    "z": 8000,
+    "height": 172.04651162790697,
+    "width": 550.046511627907,
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "slicer",
@@ -44,46 +44,18 @@
                   "Value": "1D"
                 }
               }
-            },
-            "filter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "c",
-                    "Entity": "Calendario",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "In": {
-                        "Expressions": [
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "c"
-                                }
-                              },
-                              "Property": "Mês"
-                            }
-                          }
-                        ],
-                        "Values": [
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'Janeiro'"
-                              }
-                            }
-                          ]
-                        ]
-                      }
-                    }
-                  }
-                ]
+            }
+          }
+        }
+      ],
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Basic'"
+                }
               }
             }
           }
@@ -112,23 +84,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "8ba389a0c5d608b0a393",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Calendario"
-              }
-            },
-            "Property": "Mês"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

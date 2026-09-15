@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "donutTurnover",
   "position": {
-    "x": 1260,
-    "y": 270,
-    "z": 0,
+    "x": 1246.1860465116285,
+    "y": 410.65116279069753,
+    "z": 2000,
     "height": 380,
     "width": 620,
-    "tabOrder": 9
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "donutChart",
@@ -74,37 +74,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "6d1b81a3c34690a3047e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Funcionarios"
-              }
-            },
-            "Property": "Segmento Turnover"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "2fe24dab0b0ebd047ca2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Demissões"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

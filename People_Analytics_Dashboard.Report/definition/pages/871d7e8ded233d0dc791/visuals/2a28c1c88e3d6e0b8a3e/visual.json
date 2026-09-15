@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "kpiMassaSalarial",
+  "name": "2a28c1c88e3d6e0b8a3e",
   "position": {
-    "x": 961.95348837209235,
-    "y": 231.06976744186036,
-    "z": 5000,
+    "x": 26.372093023255815,
+    "y": 71.5813953488372,
+    "z": 10000,
     "height": 160,
     "width": 440,
-    "tabOrder": 2000
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "card",
@@ -23,32 +23,32 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "Massa Salarial"
+                  "Property": "Contratações"
                 }
               },
-              "queryRef": "_Medidas.Massa Salarial",
-              "nativeQueryRef": "Massa Salarial"
-            }
-          ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Medidas"
-                    }
-                  },
-                  "Property": "Delta Massa Salarial %"
-                }
-              },
-              "queryRef": "_Medidas.Delta Massa Salarial %",
-              "nativeQueryRef": "Delta Massa Salarial %"
+              "queryRef": "_Medidas.Contratações",
+              "nativeQueryRef": "Contratações"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Medidas"
+                  }
+                },
+                "Property": "Contratações"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
       }
     },
     "objects": {
@@ -129,7 +129,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Massa Salarial'"
+                  "Value": "'Contratações'"
                 }
               }
             }
@@ -137,5 +137,23 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9fdf107c50ec2a2caeea",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Contratações"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

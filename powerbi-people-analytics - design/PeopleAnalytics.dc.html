@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="People Analytics Report" description="Four-page Power BI report canvas (1920×1080) for the Home Experience people-analytics case: headcount, turnover, retention and payroll." -->
+<helmet><script src="./ds-base.js"></script><style>*{box-sizing:border-box}html,body{margin:0}body{background:var(--bg-app,#F1F1F1);font-family:var(--font-sans),system-ui}a{color:var(--text-accent)}a:hover{color:var(--accent-strong)}</style></helmet>
+<div style="width:1920px;background:var(--bg-app);font-family:var(--font-sans),system-ui">
+<div style="display:flex;align-items:center;gap:28px;height:64px;padding:0 28px;background:var(--surface-card);border-bottom:1px solid var(--border-hairline)">
+<span style="display:flex;align-items:center;gap:10px;flex:0 0 auto">
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.Logo" variant="mark" height="28" hint-size="57px,28px"></x-import>
+<span style="display:flex;flex-direction:column;line-height:1.25"><strong style="font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">People Analytics</strong><span style="font:var(--text-micro);font-weight:400;font-family:var(--font-sans),system-ui;color:var(--text-muted)">Home Experience · jan–jun 2020</span></span>
+</span>
+<nav style="display:flex;align-items:flex-end;gap:4px;height:100%;flex:1;min-width:0">
+<button onClick="{{ goVisao }}" style="position:relative;display:flex;align-items:center;height:100%;padding:0 16px;border:none;background:transparent;cursor:pointer;font:var(--text-label);font-family:var(--font-sans),system-ui;color:var(--text-body);transition:var(--transition-control)" style-hover="background:var(--accent-softer)">Visão Geral<sc-if value="{{ isVisao }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:12px;right:12px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--accent)"></span></sc-if></button>
+<button onClick="{{ goTurnover }}" style="position:relative;display:flex;align-items:center;height:100%;padding:0 16px;border:none;background:transparent;cursor:pointer;font:var(--text-label);font-family:var(--font-sans),system-ui;color:var(--text-body);transition:var(--transition-control)" style-hover="background:var(--accent-softer)">Contratações &amp; Turnover<sc-if value="{{ isTurnover }}"><span style="position:absolute;left:12px;right:12px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--accent)"></span></sc-if></button>
+<button onClick="{{ goRetencao }}" style="position:relative;display:flex;align-items:center;height:100%;padding:0 16px;border:none;background:transparent;cursor:pointer;font:var(--text-label);font-family:var(--font-sans),system-ui;color:var(--text-body);transition:var(--transition-control)" style-hover="background:var(--accent-softer)">Retenção &amp; Perfil<sc-if value="{{ isRetencao }}"><span style="position:absolute;left:12px;right:12px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--accent)"></span></sc-if></button>
+<button onClick="{{ goFolha }}" style="position:relative;display:flex;align-items:center;height:100%;padding:0 16px;border:none;background:transparent;cursor:pointer;font:var(--text-label);font-family:var(--font-sans),system-ui;color:var(--text-body);transition:var(--transition-control)" style-hover="background:var(--accent-softer)">Folha, Absenteísmo &amp; Equidade<sc-if value="{{ isFolha }}"><span style="position:absolute;left:12px;right:12px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--accent)"></span></sc-if></button>
+</nav>
+<span style="display:inline-flex;align-items:center;gap:6px;flex:0 0 auto;background:var(--status-warn-bg);border-radius:6px;padding:5px 10px;font:var(--text-micro);font-family:var(--font-sans),system-ui;color:var(--status-warn)"><span style="width:5px;height:5px;border-radius:999px;background:currentColor"></span>Números ilustrativos — modelo ainda não construído</span>
+</div>
+
+<sc-if value="{{ isVisao }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="01 Visão Geral" style="width:1920px;height:1080px;padding:28px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px;flex:0 0 auto;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:0 20px">
+<div style="min-width:0"><h2 style="margin:0;font:var(--text-h2);font-family:var(--font-sans),system-ui;letter-spacing:var(--tracking-tight);color:var(--text-heading)">Visão Geral</h2><p style="margin:2px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Saúde do quadro de pessoas — entradas, saídas, custo e ausência</p></div>
+<div style="display:flex;gap:10px;flex:0 0 auto">
+<span style="display:inline-flex;align-items:center;gap:8px;background:var(--surface-card);border:1px solid var(--border-field);border-radius:8px;padding:8px 12px;font:var(--text-body-sm);font-family:var(--font-sans),system-ui"><span style="color:var(--text-muted)">Ano</span><strong style="font-weight:500;color:var(--text-heading)">2020</strong><x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.Icon" name="chevron_down" size="13" color="var(--text-faint)" hint-size="13px,13px"></x-import></span>
+<span style="display:inline-flex;align-items:center;gap:8px;background:var(--surface-card);border:1px solid var(--border-field);border-radius:8px;padding:8px 12px;font:var(--text-body-sm);font-family:var(--font-sans),system-ui"><span style="color:var(--text-muted)">Mês</span><strong style="font-weight:500;color:var(--text-heading)">Todos</strong><x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.Icon" name="chevron_down" size="13" color="var(--text-faint)" hint-size="13px,13px"></x-import></span>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;flex:0 0 auto">
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.StatTile" label="Headcount" value="389" delta="−5,6%" direction="down" hint-size="100%,70px"></x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.StatTile" label="Turnover Demissional" value="3,1%" delta="−0,5 p.p." hint-size="100%,70px"></x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.StatTile" label="Massa Salarial" value="R$ 3,64 mi" delta="−1,9%" direction="down" hint-size="100%,70px"></x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.StatTile" label="% Absenteísmo" value="2,9%" delta="−0,5 p.p." hint-size="100%,70px"></x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.StatTile" label="Contratações" value="74" delta="+12" hint-size="100%,70px"></x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.StatTile" label="Demissões" value="97" delta="+9" direction="down" hint-size="100%,70px"></x-import>
+</div>
+<div style="display:grid;grid-template-columns:2.05fr 1fr;gap:16px;flex:1;min-height:0">
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0">
+<div><h3 style="margin:0;font:var(--text-h3);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Headcount e Turnover Demissional por mês</h3><p style="margin:3px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Eixos separados — as duas séries têm escalas incomparáveis, por isso não compartilham um eixo falso</p></div>
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:14px">
+<div style="flex:1.15;min-height:0;display:flex;flex-direction:column;gap:6px">
+<span style="font:var(--text-micro);font-family:var(--font-sans),system-ui;color:var(--text-muted)">HEADCOUNT — COLABORADORES ATIVOS NO FIM DO MÊS</span>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.LineChart" height="248" labels="{{ meses }}" yTicks="{{ headcountTicks }}" min="380" max="430" series="{{ headcountSeries }}" hint-size="100%,270px"></x-import>
+</div>
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--border-hairline);padding-top:14px">
+<span style="font:var(--text-micro);font-family:var(--font-sans),system-ui;color:var(--text-muted)">TURNOVER DEMISSIONAL % — DESLIGAMENTOS POR INICIATIVA DA EMPRESA</span>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.BarChart" height="198" barWidth="52" yTicks="{{ turnoverTicks }}" data="{{ turnoverMes }}" hint-size="100%,230px"></x-import>
+</div>
+</div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.AlertBanner" tone="warn" title="Pico de turnover em abril (4,2%)" detail="Coincide com a queda de 16 colaboradores no headcount — investigar desligamentos no Centro de Custo de Loja" hint-size="100%,58px"></x-import>
+</section>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0">
+<div><h3 style="margin:0;font:var(--text-h3);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Turnover segmentado</h3><p style="margin:3px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Composição dos 233 desligamentos do período</p></div>
+<div style="display:flex;justify-content:center;padding:4px 0">
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.SegmentDonut" segments="{{ segmentos }}" size="228" thickness="30" total="233" totalLabel="Desligamentos" hint-size="228px,228px"></x-import>
+</div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.ChartLegend" items="{{ segmentoLegenda }}" hint-size="100%,18px"></x-import>
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--border-hairline);padding-top:16px">
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.InsightTile" icon="alert_circle" tone="risk" label="Turnover espontâneo" value="59" note="25,3% das saídas são pedidos de demissão — o sinal mais caro da base" hint-size="100%,92px"></x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.InsightTile" icon="target" tone="ok" label="Má contratação" value="75" note="Saídas em menos de 60 dias — 15,2% de todas as admissões" hint-size="100%,92px"></x-import>
+</div>
+</section>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isTurnover }}">
+<div data-screen-label="02 Contratações e Turnover" style="width:1920px;height:1080px;padding:28px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px;flex:0 0 auto;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:0 20px">
+<div style="min-width:0"><h2 style="margin:0;font:var(--text-h2);font-family:var(--font-sans),system-ui;letter-spacing:var(--tracking-tight);color:var(--text-heading)">Contratações &amp; Turnover</h2><p style="margin:2px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Quem entra, quem sai e onde a contratação falha</p></div>
+<div style="display:flex;gap:10px;flex:0 0 auto">
+<span style="display:inline-flex;align-items:center;gap:8px;background:var(--surface-card);border:1px solid var(--border-field);border-radius:8px;padding:8px 12px;font:var(--text-body-sm);font-family:var(--font-sans),system-ui"><span style="color:var(--text-muted)">Ano</span><strong style="font-weight:500;color:var(--text-heading)">Todos</strong><x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.Icon" name="chevron_down" size="13" color="var(--text-faint)" hint-size="13px,13px"></x-import></span>
+<span style="display:inline-flex;align-items:center;gap:8px;background:var(--surface-card);border:1px solid var(--border-field);border-radius:8px;padding:8px 12px;font:var(--text-body-sm);font-family:var(--font-sans),system-ui"><span style="color:var(--text-muted)">Cargo</span><strong style="font-weight:500;color:var(--text-heading)">Todos</strong><x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.Icon" name="search" size="13" color="var(--text-faint)" hint-size="13px,13px"></x-import></span>
+<span style="display:inline-flex;align-items:center;gap:8px;background:var(--surface-card);border:1px solid var(--border-field);border-radius:8px;padding:8px 12px;font:var(--text-body-sm);font-family:var(--font-sans),system-ui"><span style="color:var(--text-muted)">Faixa etária</span><strong style="font-weight:500;color:var(--text-heading)">Todas</strong><x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.Icon" name="chevron_down" size="13" color="var(--text-faint)" hint-size="13px,13px"></x-import></span>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:16px;height:340px;flex:0 0 auto">
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<div><h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Contratações por ano</h3><p style="margin:3px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">2019 é o ano de pico com 167 admissões</p></div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.BarChart" height="196" barWidth="40" yTicks="{{ contratacaoTicks }}" data="{{ contratacoesAno }}" hint-size="100%,220px"></x-import>
+</section>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<div><h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Demissões por faixa etária</h3><p style="margin:3px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">25–34 concentra 41% das saídas</p></div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.RankedBarList" items="{{ demissoesFaixa }}" hint-size="100%,200px"></x-import>
+</section>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<div><h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Turnover segmentado por ano</h3><p style="margin:3px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Ativo (empresa) · Passivo (justa causa/fim de contrato) · Espontâneo (pedido)</p></div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.BarChart" stacked="{{ true }}" height="160" barWidth="38" yTicks="{{ segmentoAnoTicks }}" data="{{ turnoverSegmentadoAno }}" hint-size="100%,190px"></x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.ChartLegend" items="{{ segmentoLegenda }}" hint-size="100%,18px"></x-import>
+</section>
+</div>
+<div style="display:grid;grid-template-columns:1.62fr 1fr;gap:16px;flex:1;min-height:0">
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<div><h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Má contratação por cargo e faixa etária</h3><p style="margin:3px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Desligamentos com menos de 60 dias de casa · coluna destacada = contagem</p></div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.DataMatrix" columns="{{ maContratacaoCols }}" rows="{{ maContratacaoRows }}" totals="{{ maContratacaoTotal }}" heatKey="n" dense="{{ true }}" hint-size="100%,320px"></x-import>
+</section>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<div><h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Turnover demissional % por ano</h3><p style="margin:3px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">A base cobre jan–jun/2020; 2004 não existe no modelo</p></div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.LineChart" height="210" labels="{{ anos }}" yTicks="{{ turnoverAnoTicks }}" min="0" max="5" series="{{ turnoverAnoSeries }}" hint-size="100%,235px"></x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.AlertBanner" tone="risk" title="Pergunta macro 6 pede o ano de 2004" detail="Fora do alcance da base — confirmar com o cliente se é erro de digitação de 2020 antes de fechar a medida" hint-size="100%,58px"></x-import>
+</section>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isRetencao }}">
+<div data-screen-label="03 Retenção e Perfil" style="width:1920px;height:1080px;padding:28px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px;flex:0 0 auto;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:0 20px">
+<div style="min-width:0"><h2 style="margin:0;font:var(--text-h2);font-family:var(--font-sans),system-ui;letter-spacing:var(--tracking-tight);color:var(--text-heading)">Retenção &amp; Perfil</h2><p style="margin:2px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Quanto tempo cada perfil fica — e o que faz ficar mais</p></div>
+<div style="display:flex;align-items:center;gap:10px;flex:0 0 auto">
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.ChartLegend" items="{{ retencaoLegenda }}" hint-size="300px,18px"></x-import>
+<span style="display:inline-flex;align-items:center;gap:8px;background:var(--surface-card);border:1px solid var(--border-field);border-radius:8px;padding:8px 12px;font:var(--text-body-sm);font-family:var(--font-sans),system-ui"><span style="color:var(--text-muted)">Ano de admissão</span><strong style="font-weight:500;color:var(--text-heading)">Todos</strong><x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.Icon" name="chevron_down" size="13" color="var(--text-faint)" hint-size="13px,13px"></x-import></span>
+<span style="display:inline-flex;align-items:center;gap:8px;background:var(--surface-card);border:1px solid var(--border-field);border-radius:8px;padding:8px 12px;font:var(--text-body-sm);font-family:var(--font-sans),system-ui"><span style="color:var(--text-muted)">Sexo</span><strong style="font-weight:500;color:var(--text-heading)">Todos</strong><x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.Icon" name="chevron_down" size="13" color="var(--text-faint)" hint-size="13px,13px"></x-import></span>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;flex:1;min-height:0">
+<div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:16px;min-width:0;min-height:0">
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Retenção por sexo</h3>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.BarChart" stacked="{{ true }}" height="270" barWidth="72" yTicks="{{ retencaoTicks }}" data="{{ retencaoSexo }}" hint-size="100%,300px"></x-import>
+</section>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Retenção por faixa etária</h3>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.BarChart" stacked="{{ true }}" height="270" barWidth="40" yTicks="{{ retencaoTicks }}" data="{{ retencaoFaixa }}" hint-size="100%,300px"></x-import>
+</section>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Retenção por ano de admissão</h3>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.BarChart" stacked="{{ true }}" height="270" barWidth="40" yTicks="{{ retencaoTicks }}" data="{{ retencaoAno }}" hint-size="100%,300px"></x-import>
+</section>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Retenção por escolaridade</h3>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.BarChart" stacked="{{ true }}" height="270" barWidth="34" rotateLabels="{{ true }}" yTicks="{{ retencaoTicks }}" data="{{ retencaoEscolaridade }}" hint-size="100%,300px"></x-import>
+</section>
+</div>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<div><h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Drivers de retenção</h3><p style="margin:3px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Tempo médio de casa por escolaridade, cargo e centro de custo</p></div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.DataMatrix" columns="{{ driversCols }}" rows="{{ driversRows }}" heatKey="dias" dense="{{ true }}" hint-size="100%,330px"></x-import>
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:12px;justify-content:flex-end">
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.InsightTile" icon="trend_up" tone="ok" label="Driver mais forte" value="Escolaridade" note="Ensino Superior retém 3,4× mais tempo que Fundamental — maior efeito isolado da base" hint-size="100%,92px"></x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.InsightTile" icon="alert_circle" tone="warn" label="Perda precoce" value="31%" note="Das admissões de 2020, 31% saíram antes de 60 dias" hint-size="100%,92px"></x-import>
+</div>
+</section>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isFolha }}">
+<div data-screen-label="04 Folha, Absenteísmo e Equidade" style="width:1920px;height:1080px;padding:28px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px;flex:0 0 auto;background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:0 20px">
+<div style="min-width:0"><h2 style="margin:0;font:var(--text-h2);font-family:var(--font-sans),system-ui;letter-spacing:var(--tracking-tight);color:var(--text-heading)">Folha, Absenteísmo &amp; Equidade</h2><p style="margin:2px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Quanto custa o quadro — e o que se perde em ausência</p></div>
+<div style="display:flex;gap:10px;flex:0 0 auto">
+<span style="display:inline-flex;align-items:center;gap:8px;background:var(--surface-card);border:1px solid var(--border-field);border-radius:8px;padding:8px 12px;font:var(--text-body-sm);font-family:var(--font-sans),system-ui"><span style="color:var(--text-muted)">Ano</span><strong style="font-weight:500;color:var(--text-heading)">2020</strong><x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.Icon" name="chevron_down" size="13" color="var(--text-faint)" hint-size="13px,13px"></x-import></span>
+<span style="display:inline-flex;align-items:center;gap:8px;background:var(--surface-card);border:1px solid var(--border-field);border-radius:8px;padding:8px 12px;font:var(--text-body-sm);font-family:var(--font-sans),system-ui"><span style="color:var(--text-muted)">Escolaridade</span><strong style="font-weight:500;color:var(--text-heading)">Todas</strong><x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.Icon" name="chevron_down" size="13" color="var(--text-faint)" hint-size="13px,13px"></x-import></span>
+<span style="display:inline-flex;align-items:center;gap:8px;background:var(--surface-card);border:1px solid var(--border-field);border-radius:8px;padding:8px 12px;font:var(--text-body-sm);font-family:var(--font-sans),system-ui"><span style="color:var(--text-muted)">Cargo</span><strong style="font-weight:500;color:var(--text-heading)">Todos</strong><x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.Icon" name="search" size="13" color="var(--text-faint)" hint-size="13px,13px"></x-import></span>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1.15fr;gap:16px;height:336px;flex:0 0 auto">
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<div><h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Massa salarial por mês</h3><p style="margin:3px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Total da folha · R$ 22,4 mi no semestre</p></div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.LineChart" height="210" labels="{{ meses }}" yTicks="{{ massaTicks }}" min="3.6" max="4" series="{{ massaSeries }}" hint-size="100%,235px"></x-import>
+</section>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
+<div style="min-width:0"><h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Horas normais vs. horas extras</h3><p style="margin:3px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Recorte por escolaridade responde a pergunta macro 11</p></div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.StatTile" label="% Horas Extras" value="6,8%" delta="+1,1 p.p." direction="down" style="width:190px;flex:0 0 auto" hint-size="190px,70px"></x-import>
+</div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.BarChart" height="164" barWidth="22" yTicks="{{ horasTicks }}" data="{{ horas }}" hint-size="100%,195px"></x-import>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.ChartLegend" items="{{ horasLegenda }}" hint-size="100%,18px"></x-import>
+</section>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1.15fr;gap:16px;height:300px;flex:0 0 auto">
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<div><h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">% Absenteísmo por mês</h3><p style="margin:3px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Menor mês: junho, com 2,9%</p></div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.BarChart" height="178" barWidth="52" yTicks="{{ absenteismoTicks }}" data="{{ absenteismoMes }}" hint-size="100%,205px"></x-import>
+</section>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+<div><h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Absenteísmo por causa</h3><p style="margin:3px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Horas perdidas no semestre · total 1.397 h</p></div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.RankedBarList" showRank="{{ true }}" items="{{ absenteismoCausa }}" hint-size="100%,200px"></x-import>
+</section>
+</div>
+<div style="display:grid;grid-template-columns:1.6fr 1fr;gap:16px;flex:1;min-height:0">
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:row;align-items:center;gap:20px;min-width:0">
+<div style="flex:0 0 auto;min-width:0"><h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Leque salarial</h3><p style="margin:3px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">Maior salário ÷ menor salário</p><div style="font:var(--text-metric-xl);font-family:var(--font-sans),system-ui;color:var(--text-accent);margin-top:6px">8,4×</div></div>
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.DataMatrix" columns="{{ lequeCols }}" rows="{{ lequeRows }}" heatKey="leque" dense="{{ true }}" style="flex:1" hint-size="100%,130px"></x-import>
+</section>
+<section style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:12px;box-shadow:var(--shadow-card);padding:16px;display:flex;flex-direction:row;align-items:center;gap:20px;min-width:0">
+<x-import component-from-global-scope="NexaFlowDesignSystem_fd0681.DonutGauge" value="37" size="116" thickness="12" sublabel="Técnicos" hint-size="116px,116px"></x-import>
+<div style="min-width:0"><h3 style="margin:0;font:var(--text-h4);font-family:var(--font-sans),system-ui;color:var(--text-heading)">Índice de tecnicidade</h3><p style="margin:4px 0 0;font:var(--text-caption);font-family:var(--font-sans),system-ui;color:var(--text-muted)">144 de 389 colaboradores em cargos técnicos ou de nível superior. Sobe para 52% quando se olha só os centros de custo administrativos.</p></div>
+</section>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1920,&quot;height&quot;:1144},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light' | 'dark'&quot;,&quot;section&quot;:&quot;Aparência&quot;}}">
+class Component extends DCLogic {
+  state = { page: 'visao' };
+
+  componentDidMount() { this.applyTheme(); }
+  componentDidUpdate(prev) { if (prev.theme !== this.props.theme) this.applyTheme(); }
+  applyTheme() { document.documentElement.setAttribute('data-theme', this.props.theme ?? 'light'); }
+
+  go = page => () => this.setState({ page });
+
+  renderVals() {
+    const page = this.state.page;
+    const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'];
+    const anos = ['2016', '2017', '2018', '2019', '2020'];
+
+    /* Retention: [<60d, 60–365d, >365d] */
+    const ret = (label, a, b, c) => ({ label, values: [c, b, a] });
+
+    return {
+      isVisao: page === 'visao',
+      isTurnover: page === 'turnover',
+      isRetencao: page === 'retencao',
+      isFolha: page === 'folha',
+      goVisao: this.go('visao'),
+      goTurnover: this.go('turnover'),
+      goRetencao: this.go('retencao'),
+      goFolha: this.go('folha'),
+
+      meses, anos,
+
+      /* — Page 1 — */
+      headcountTicks: ['430', '420', '410', '400', '390', '380'],
+      headcountSeries: [{ name: 'Headcount', points: [412, 418, 421, 405, 398, 389] }],
+      turnoverTicks: ['5%', '4%', '3%', '2%', '1%', '0%'],
+      turnoverMes: meses.map((label, i) => ({ label, value: [2.1, 2.4, 3.0, 4.2, 3.6, 3.1][i] })),
+      segmentos: [{ value: 96 }, { value: 78 }, { value: 59 }],
+      segmentoLegenda: [
+        { label: 'Ativo — 96' },
+        { label: 'Passivo — 78', color: 'var(--series-2)' },
+        { label: 'Espontâneo — 59', color: 'var(--series-3)' }
+      ],
+
+      /* — Page 2 — */
+      contratacaoTicks: ['180', '135', '90', '45', '0'],
+      contratacoesAno: [88, 112, 134, 167, 74].map((value, i) => ({ label: anos[i], value })),
+      demissoesFaixa: [
+        { label: '25–34 anos', value: 96, display: '96' },
+        { label: '35–44 anos', value: 58, display: '58' },
+        { label: '18–24 anos', value: 41, display: '41' },
+        { label: '45–54 anos', value: 27, display: '27' },
+        { label: '55+ anos', value: 11, display: '11' }
+      ],
+      segmentoAnoTicks: ['90', '68', '45', '23', '0'],
+      turnoverSegmentadoAno: [
+        { label: '2016', values: [14, 11, 6] },
+        { label: '2017', values: [19, 14, 9] },
+        { label: '2018', values: [22, 17, 12] },
+        { label: '2019', values: [26, 21, 17] },
+        { label: '2020', values: [15, 15, 15] }
+      ],
+      maContratacaoCols: [
+        { key: 'cargo', label: 'Cargo', width: '34%' },
+        { key: 'faixa', label: 'Faixa etária', width: '20%' },
+        { key: 'admissoes', label: 'Admissões', align: 'right' },
+        { key: 'n', label: 'Má contratação #', align: 'right' },
+        { key: 'pct', label: '%', align: 'right' }
+      ],
+      maContratacaoRows: [
+        { cargo: 'Auxiliar de Limpeza', faixa: '18–24', admissoes: 62, n: 18, pct: '29,0%' },
+        { cargo: 'Operador de Loja', faixa: '18–24', admissoes: 94, n: 14, pct: '14,9%' },
+        { cargo: 'Repositor', faixa: '25–34', admissoes: 78, n: 11, pct: '14,1%' },
+        { cargo: 'Vendedor', faixa: '25–34', admissoes: 86, n: 9, pct: '10,5%' },
+        { cargo: 'Conferente', faixa: '35–44', admissoes: 54, n: 6, pct: '11,1%' },
+        { cargo: 'Auxiliar Administrativo', faixa: '25–34', admissoes: 71, n: 6, pct: '8,5%' },
+        { cargo: 'Estoquista', faixa: '18–24', admissoes: 43, n: 5, pct: '11,6%' },
+        { cargo: 'Supervisor', faixa: '35–44', admissoes: 38, n: 4, pct: '10,5%' },
+        { cargo: 'Motorista', faixa: '45–54', admissoes: 29, n: 2, pct: '6,9%' }
+      ],
+      maContratacaoTotal: { cargo: 'Total', faixa: '—', admissoes: 555, n: 75, pct: '13,5%' },
+      turnoverAnoTicks: ['5%', '3,8%', '2,5%', '1,3%', '0%'],
+      turnoverAnoSeries: [{ name: 'Turnover Demissional %', points: [2.8, 3.1, 3.6, 4.1, 3.2] }],
+
+      /* — Page 3 — */
+      retencaoLegenda: [
+        { label: '> 365 dias' },
+        { label: '60–365 dias', color: 'var(--series-2)' },
+        { label: '< 60 dias', color: 'var(--series-3)' }
+      ],
+      retencaoTicks: ['100%', '75%', '50%', '25%', '0%'],
+      retencaoSexo: [ret('Feminino', 14, 34, 52), ret('Masculino', 19, 38, 43)],
+      retencaoFaixa: [
+        ret('18–24', 28, 41, 31), ret('25–34', 17, 37, 46),
+        ret('35–44', 11, 31, 58), ret('45–54', 8, 25, 67), ret('55+', 6, 22, 72)
+      ],
+      retencaoAno: [
+        ret('2016', 9, 18, 73), ret('2017', 11, 22, 67), ret('2018', 14, 29, 57),
+        ret('2019', 19, 42, 39), ret('2020', 31, 69, 0)
+      ],
+      retencaoEscolaridade: [
+        ret('Fundamental', 29, 43, 28), ret('Médio', 18, 37, 45),
+        ret('Técnico', 12, 30, 58), ret('Superior', 7, 24, 69), ret('Pós-graduação', 4, 19, 77)
+      ],
+      driversCols: [
+        { key: 'driver', label: 'Driver', width: '38%' },
+        { key: 'grupo', label: 'Grupo de maior retenção' },
+        { key: 'dias', label: 'Dias', align: 'right' }
+      ],
+      driversRows: [
+        { driver: 'Escolaridade', grupo: 'Pós-graduação', dias: 1284 },
+        { driver: 'Escolaridade', grupo: 'Fundamental', dias: 376 },
+        { driver: 'Cargo', grupo: 'Supervisor', dias: 1147 },
+        { driver: 'Cargo', grupo: 'Auxiliar de Limpeza', dias: 291 },
+        { driver: 'Centro de custo', grupo: 'Administrativo', dias: 1062 },
+        { driver: 'Centro de custo', grupo: 'Loja', dias: 418 },
+        { driver: 'Faixa etária', grupo: '55+ anos', dias: 1196 },
+        { driver: 'Faixa etária', grupo: '18–24 anos', dias: 344 }
+      ],
+
+      /* — Page 4 — */
+      massaTicks: ['R$ 4,0 mi', 'R$ 3,9 mi', 'R$ 3,8 mi', 'R$ 3,7 mi', 'R$ 3,6 mi'],
+      massaSeries: [{ name: 'Massa Salarial', points: [3.82, 3.90, 3.94, 3.79, 3.71, 3.64] }],
+      horasTicks: ['64k', '48k', '32k', '16k', '0'],
+      horas: [
+        { label: 'Jan', values: [58400, 3720] }, { label: 'Fev', values: [59100, 3980] },
+        { label: 'Mar', values: [59600, 4610] }, { label: 'Abr', values: [57300, 4240] },
+        { label: 'Mai', values: [56200, 3860] }, { label: 'Jun', values: [55100, 3510] }
+      ],
+      horasLegenda: [{ label: 'Horas normais' }, { label: 'Horas extras', color: 'var(--series-2)' }],
+      absenteismoTicks: ['6%', '4,5%', '3%', '1,5%', '0%'],
+      absenteismoMes: meses.map((label, i) => ({ label, value: [4.1, 3.8, 4.6, 5.2, 3.4, 2.9][i] })),
+      absenteismoCausa: [
+        { label: 'Atestado médico', value: 412, display: '412 h' },
+        { label: 'Falta não justificada', value: 387, display: '387 h', tone: 'warn' },
+        { label: 'Atraso', value: 264, display: '264 h' },
+        { label: 'Licença maternidade', value: 196, display: '196 h' },
+        { label: 'Acidente de trabalho', value: 138, display: '138 h' }
+      ],
+      lequeCols: [
+        { key: 'corte', label: 'Corte', width: '42%' },
+        { key: 'menor', label: 'Menor', align: 'right' },
+        { key: 'maior', label: 'Maior', align: 'right' },
+        { key: 'leque', label: 'Leque', align: 'right' }
+      ],
+      lequeRows: [
+        { corte: 'Geral', menor: 'R$ 1.412', maior: 'R$ 11.860', leque: '8,4×' },
+        { corte: 'Cargos de gestão', menor: 'R$ 5.240', maior: 'R$ 11.860', leque: '2,3×' },
+        { corte: 'Ensino Superior', menor: 'R$ 2.680', maior: 'R$ 11.860', leque: '4,4×' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
