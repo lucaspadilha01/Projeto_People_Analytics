@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "chartTurnoverTrend",
   "position": {
-    "x": 650.51162790697606,
-    "y": 409.39534883720916,
+    "x": 26,
+    "y": 640,
     "z": 1000,
-    "height": 380,
-    "width": 590,
-    "tabOrder": 8000
+    "height": 300,
+    "width": 1242,
+    "tabOrder": 10
   },
   "visual": {
     "visualType": "lineChart",

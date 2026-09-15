@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "kpiMassaSalarial",
+  "name": "kpiContratacoes",
   "position": {
-    "x": 646,
+    "x": 1266,
     "y": 160,
-    "z": 5000,
+    "z": 7000,
     "height": 72,
     "width": 300,
-    "tabOrder": 5
+    "tabOrder": 7
   },
   "visual": {
     "visualType": "card",
@@ -23,11 +23,11 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "Massa Salarial"
+                  "Property": "Contratações"
                 }
               },
-              "queryRef": "_Medidas.Massa Salarial",
-              "nativeQueryRef": "Massa Salarial"
+              "queryRef": "_Medidas.Contratações",
+              "nativeQueryRef": "Contratações"
             }
           ]
         },
@@ -41,11 +41,11 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "Delta Massa Salarial %"
+                  "Property": "Contratações"
                 }
               },
-              "queryRef": "_Medidas.Delta Massa Salarial %",
-              "nativeQueryRef": "Delta Massa Salarial %"
+              "queryRef": "_Medidas.Contratações",
+              "nativeQueryRef": "Contratações"
             }
           ]
         }
@@ -129,7 +129,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Massa Salarial'"
+                  "Value": "'Contratações'"
                 }
               }
             }

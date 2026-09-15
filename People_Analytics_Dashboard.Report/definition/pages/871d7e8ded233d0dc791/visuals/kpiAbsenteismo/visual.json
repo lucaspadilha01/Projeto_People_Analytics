@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "kpiAbsenteismo",
   "position": {
-    "x": 1406.1860465116285,
-    "y": 230.65116279069755,
+    "x": 956,
+    "y": 160,
     "z": 3000,
-    "height": 160,
-    "width": 440,
-    "tabOrder": 3000
+    "height": 72,
+    "width": 300,
+    "tabOrder": 6
   },
   "visual": {
     "visualType": "card",

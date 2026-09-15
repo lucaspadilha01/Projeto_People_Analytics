@@ -187,7 +187,7 @@ table _Medidas
 
 	measure 'Delta Turnover Demissional %' =
 			VAR _atual = [Turnover Demissional %]
-			VAR _anterior = [Turnover Demissional %]
+			VAR _anterior = CALCULATE([Turnover Demissional %], DATEADD('Calendario'[Date], -1, YEAR))
 			RETURN _atual - _anterior
 		formatString: 0.00%
 		lineageTag: e1e1a001-0000-4a00-9000-000000000021
