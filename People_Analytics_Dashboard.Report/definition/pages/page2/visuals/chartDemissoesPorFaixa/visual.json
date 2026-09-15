@@ -27,11 +27,12 @@
                 }
               },
               "queryRef": "Funcionarios.Faixa Etária",
-              "nativeQueryRef": "Faixa Etária"
+              "nativeQueryRef": "Faixa Etária",
+              "active": true
             }
           ]
         },
-        "Values": {
+        "Y": {
           "projections": [
             {
               "field": {
