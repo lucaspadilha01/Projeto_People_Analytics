@@ -206,6 +206,16 @@ table _Medidas
 		formatString: 0.00%
 		lineageTag: e1e1a001-0000-4a00-9000-000000000023
 
+	measure 'R$ Absenteísmo' =
+			CALCULATE(
+			    SUM('BaseDados'[Valor]),
+			    'BaseDados'[Categoria de Evento] = "Faltas"
+			        || 'BaseDados'[Categoria de Evento] = "Atraso"
+			        || 'BaseDados'[Categoria de Evento] = "Atestado"
+			)
+		formatString: #,0.00
+		lineageTag: e1e1a001-0000-4a00-9000-000000000024
+
 	column Medidas
 		lineageTag: 1af547a2-6025-46db-b057-0e1750dddd8b
 		isNameInferred
