@@ -4,10 +4,10 @@
   "position": {
     "x": 1274,
     "y": 500,
-    "z": 100,
+    "z": 0,
     "height": 80,
     "width": 646,
-    "tabOrder": 15
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,12 +19,21 @@
               {
                 "textRuns": [
                   {
-                    "value": "📚 Escolaridade: Principal Driver de Retenção",
+                    "value": "📚",
                     "textStyle": {
-                      "fontSize": "13px",
+                      "fontWeight": "bold",
                       "fontFamily": "Inter",
-                      "color": "#111218",
-                      "fontWeight": "bold"
+                      "fontSize": "13px",
+                      "color": "#111218"
+                    }
+                  },
+                  {
+                    "value": " Escolaridade: Principal Driver de Retenção",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Inter",
+                      "fontSize": "14pt",
+                      "color": "#111218"
                     }
                   }
                 ]
@@ -34,9 +43,9 @@
                   {
                     "value": "Colaboradores com Superior/Pós-Graduação têm 3.4× maior permanência",
                     "textStyle": {
-                      "fontSize": "12px",
                       "fontFamily": "Inter",
-                      "color": "#71727C"
+                      "fontSize": "14pt",
+                      "color": "#71727c"
                     }
                   }
                 ]
@@ -46,10 +55,9 @@
                   {
                     "value": "Recomendação: Investir em programas de capacitação.",
                     "textStyle": {
-                      "fontSize": "11px",
                       "fontFamily": "Inter",
-                      "color": "#7A60CA",
-                      "fontWeight": "600"
+                      "fontSize": "14pt",
+                      "color": "#7a60ca"
                     }
                   }
                 ]

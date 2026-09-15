@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "insightTile1",
   "position": {
-    "x": 26,
-    "y": 975,
-    "z": 100,
-    "height": 50,
-    "width": 300,
-    "tabOrder": 13
+    "x": 26.372093023255815,
+    "y": 974.51162790697674,
+    "z": 2000,
+    "height": 87.906976744186053,
+    "width": 327.76744186046511,
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "textbox",
@@ -21,17 +21,17 @@
                   {
                     "value": "📊 ",
                     "textStyle": {
-                      "fontSize": "12px",
-                      "fontFamily": "Inter"
+                      "fontFamily": "Inter",
+                      "fontSize": "14pt"
                     }
                   },
                   {
                     "value": "Más Contratações",
                     "textStyle": {
-                      "fontSize": "12px",
+                      "fontWeight": "bold",
                       "fontFamily": "Inter",
-                      "color": "#111218",
-                      "fontWeight": "bold"
+                      "fontSize": "14pt",
+                      "color": "#111218"
                     }
                   }
                 ]
@@ -41,9 +41,9 @@
                   {
                     "value": "12% das contratações saem em <60 dias",
                     "textStyle": {
-                      "fontSize": "11px",
                       "fontFamily": "Inter",
-                      "color": "#71727C"
+                      "fontSize": "14pt",
+                      "color": "#71727c"
                     }
                   }
                 ]

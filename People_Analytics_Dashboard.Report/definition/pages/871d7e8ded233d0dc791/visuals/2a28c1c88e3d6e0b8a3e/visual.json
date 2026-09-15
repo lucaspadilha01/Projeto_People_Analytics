@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "2a28c1c88e3d6e0b8a3e",
   "position": {
-    "x": 26.372093023255815,
-    "y": 71.5813953488372,
-    "z": 10000,
-    "height": 160,
-    "width": 440,
-    "tabOrder": 10000
+    "x": 336.55813953488371,
+    "y": 146.93023255813955,
+    "z": 14000,
+    "height": 125.58139534883721,
+    "width": 298.88372093023258,
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "card",
@@ -137,23 +137,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "9fdf107c50ec2a2caeea",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Contratações"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

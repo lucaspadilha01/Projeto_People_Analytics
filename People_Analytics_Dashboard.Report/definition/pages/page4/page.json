@@ -4,5 +4,45 @@
   "displayName": "Folha, Absenteísmo & Equidade",
   "displayOption": "FitToPage",
   "height": 1080,
-  "width": 1920
+  "width": 1920,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c9d97add6db364000cd0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendario"
+              }
+            },
+            "Property": "Ano"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "270575b11c5ae59b0ce0",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "41dfc8c413020e5207ee",
+        "boundFilter": "c9d97add6db364000cd0",
+        "asAggregation": true,
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendario"
+              }
+            },
+            "Property": "Ano"
+          }
+        }
+      }
+    ]
+  }
 }

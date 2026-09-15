@@ -4,16 +4,16 @@
   "position": {
     "x": 26,
     "y": 500,
-    "z": 2000,
+    "z": 4000,
     "height": 300,
     "width": 1190,
-    "tabOrder": 13
+    "tabOrder": 7000
   },
   "visual": {
-    "visualType": "table",
+    "visualType": "clusteredBarChart",
     "query": {
       "queryState": {
-        "Rows": {
+        "Category": {
           "projections": [
             {
               "field": {
@@ -32,7 +32,7 @@
             }
           ]
         },
-        "Values": {
+        "Y": {
           "projections": [
             {
               "field": {
@@ -42,34 +42,33 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "Má Contratação %"
+                  "Property": "Massa Salarial"
                 }
               },
-              "queryRef": "_Medidas.Má Contratação %",
-              "nativeQueryRef": "Má Contratação %"
+              "queryRef": "_Medidas.Massa Salarial",
+              "nativeQueryRef": "Massa Salarial"
             }
           ]
         }
-      }
-    },
-    "objects": {
-      "grid": [
-        {
-          "properties": {
-            "outlineColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#EAEAEC'"
-                    }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Medidas"
                   }
-                }
+                },
+                "Property": "Massa Salarial"
               }
-            }
+            },
+            "direction": "Descending"
           }
-        }
-      ]
+        ],
+        "isDefaultSort": true
+      }
     },
     "visualContainerObjects": {
       "title": [

@@ -4,10 +4,10 @@
   "position": {
     "x": 1274,
     "y": 590,
-    "z": 100,
+    "z": 1000,
     "height": 80,
     "width": 646,
-    "tabOrder": 16
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,12 +19,21 @@
               {
                 "textRuns": [
                   {
-                    "value": "⚠️ Risco de Perda Precoce",
+                    "value": "⚠️ ",
                     "textStyle": {
-                      "fontSize": "13px",
+                      "fontWeight": "bold",
                       "fontFamily": "Inter",
-                      "color": "#DC5B54",
-                      "fontWeight": "bold"
+                      "fontSize": "13px",
+                      "color": "#dc5b54"
+                    }
+                  },
+                  {
+                    "value": "Risco de Perda Precoce",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Inter",
+                      "fontSize": "14pt",
+                      "color": "#dc5b54"
                     }
                   }
                 ]
@@ -34,9 +43,9 @@
                   {
                     "value": "18% dos colaboradores saem nos primeiros 60 dias",
                     "textStyle": {
-                      "fontSize": "12px",
                       "fontFamily": "Inter",
-                      "color": "#71727C"
+                      "fontSize": "14pt",
+                      "color": "#71727c"
                     }
                   }
                 ]
@@ -46,10 +55,9 @@
                   {
                     "value": "Ação: Revisar processo de onboarding e integração.",
                     "textStyle": {
-                      "fontSize": "11px",
                       "fontFamily": "Inter",
-                      "color": "#DC5B54",
-                      "fontWeight": "600"
+                      "fontSize": "14pt",
+                      "color": "#dc5b54"
                     }
                   }
                 ]

@@ -3,17 +3,17 @@
   "name": "kpiDemissoes",
   "position": {
     "x": 1576,
-    "y": 160,
-    "z": 8000,
-    "height": 100,
+    "y": 146.93023255813955,
+    "z": 12000,
+    "height": 125,
     "width": 304,
-    "tabOrder": 8
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "card",
     "query": {
       "queryState": {
-        "Values": {
+        "Tooltips": {
           "projections": [
             {
               "field": {
@@ -31,7 +31,7 @@
             }
           ]
         },
-        "Tooltips": {
+        "Values": {
           "projections": [
             {
               "field": {

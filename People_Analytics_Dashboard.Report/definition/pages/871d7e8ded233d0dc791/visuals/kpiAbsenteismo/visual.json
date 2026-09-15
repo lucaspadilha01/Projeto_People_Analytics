@@ -3,34 +3,16 @@
   "name": "kpiAbsenteismo",
   "position": {
     "x": 956,
-    "y": 160,
-    "z": 3000,
-    "height": 100,
+    "y": 146.93023255813955,
+    "z": 6000,
+    "height": 125,
     "width": 300,
-    "tabOrder": 6
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "card",
     "query": {
       "queryState": {
-        "Values": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Medidas"
-                    }
-                  },
-                  "Property": "% Absenteísmo"
-                }
-              },
-              "queryRef": "_Medidas.% Absenteísmo",
-              "nativeQueryRef": "% Absenteísmo"
-            }
-          ]
-        },
         "Tooltips": {
           "projections": [
             {
@@ -46,6 +28,24 @@
               },
               "queryRef": "_Medidas.Delta Absenteísmo %",
               "nativeQueryRef": "Delta Absenteísmo %"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "% Absenteísmo"
+                }
+              },
+              "queryRef": "_Medidas.% Absenteísmo",
+              "nativeQueryRef": "% Absenteísmo"
             }
           ]
         }
@@ -137,23 +137,5 @@
         }
       ]
     }
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "9a62f9c8a50979021ae4",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "% Absenteísmo"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

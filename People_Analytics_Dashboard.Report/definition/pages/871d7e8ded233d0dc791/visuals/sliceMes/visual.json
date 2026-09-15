@@ -4,10 +4,10 @@
   "position": {
     "x": 1460,
     "y": 75,
-    "z": 6000,
+    "z": 9000,
     "height": 40,
     "width": 420,
-    "tabOrder": 2
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "slicer",
@@ -38,13 +38,6 @@
       "general": [
         {
           "properties": {
-            "defaultValue": {
-              "expr": {
-                "Literal": {
-                  "Value": "null"
-                }
-              }
-            },
             "selfFilterEnabled": {
               "expr": {
                 "Literal": {
@@ -61,7 +54,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -69,6 +62,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Inter'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
                 }
               }
             }

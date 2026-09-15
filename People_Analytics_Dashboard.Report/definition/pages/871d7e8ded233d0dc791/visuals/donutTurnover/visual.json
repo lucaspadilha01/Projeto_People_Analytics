@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "donutTurnover",
   "position": {
-    "x": 1278,
-    "y": 230,
-    "z": 2000,
-    "height": 730,
-    "width": 642,
-    "tabOrder": 11
+    "x": 1278.4186046511629,
+    "y": 285.06976744186045,
+    "z": 5000,
+    "height": 675.62790697674416,
+    "width": 641.7209302325582,
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "donutChart",

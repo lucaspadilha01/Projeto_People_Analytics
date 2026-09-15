@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "alertBanner",
   "position": {
-    "x": 1278,
-    "y": 970,
-    "z": 100,
+    "x": 1278.4186046511629,
+    "y": 969.48837209302326,
+    "z": 1000,
     "height": 60,
     "width": 642,
-    "tabOrder": 12
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,12 +19,21 @@
               {
                 "textRuns": [
                   {
-                    "value": "⚠️ Turnover Espontâneo em Alerta",
+                    "value": "⚠️ ",
                     "textStyle": {
-                      "fontSize": "14px",
+                      "fontWeight": "bold",
                       "fontFamily": "Inter",
-                      "color": "#DC5B54",
-                      "fontWeight": "bold"
+                      "fontSize": "14px",
+                      "color": "#dc5b54"
+                    }
+                  },
+                  {
+                    "value": "Turnover Espontâneo em Alerta",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Inter",
+                      "fontSize": "14pt",
+                      "color": "#dc5b54"
                     }
                   }
                 ]
@@ -34,9 +43,9 @@
                   {
                     "value": "Taxa acima da meta operacional (2.5%)",
                     "textStyle": {
-                      "fontSize": "12px",
                       "fontFamily": "Inter",
-                      "color": "#71727C"
+                      "fontSize": "14pt",
+                      "color": "#71727c"
                     }
                   }
                 ]

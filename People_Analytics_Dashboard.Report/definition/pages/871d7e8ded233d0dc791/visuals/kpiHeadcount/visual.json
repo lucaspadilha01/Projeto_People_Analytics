@@ -3,34 +3,16 @@
   "name": "kpiHeadcount",
   "position": {
     "x": 26,
-    "y": 160,
-    "z": 4000,
-    "height": 100,
+    "y": 146.93023255813955,
+    "z": 7000,
+    "height": 125,
     "width": 300,
-    "tabOrder": 3
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "card",
     "query": {
       "queryState": {
-        "Values": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Medidas"
-                    }
-                  },
-                  "Property": "Headcount"
-                }
-              },
-              "queryRef": "_Medidas.Headcount",
-              "nativeQueryRef": "Headcount"
-            }
-          ]
-        },
         "Tooltips": {
           "projections": [
             {
@@ -46,6 +28,24 @@
               },
               "queryRef": "_Medidas.Delta Headcount %",
               "nativeQueryRef": "Delta Headcount %"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Headcount"
+                }
+              },
+              "queryRef": "_Medidas.Headcount",
+              "nativeQueryRef": "Headcount"
             }
           ]
         }

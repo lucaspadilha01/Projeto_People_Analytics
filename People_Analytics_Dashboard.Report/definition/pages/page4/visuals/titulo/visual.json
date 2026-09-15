@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "titulo",
   "position": {
-    "x": 40,
-    "y": 20,
+    "x": 109.25581395348837,
+    "y": 0,
     "z": 9000,
     "height": 50,
     "width": 900,
@@ -21,10 +21,10 @@
                   {
                     "value": "Folha, Absenteísmo & Equidade",
                     "textStyle": {
-                      "fontSize": "24px",
+                      "fontWeight": "bold",
                       "fontFamily": "Inter, wf_standard-font, helvetica, arial, sans-serif",
-                      "color": "#111218",
-                      "fontWeight": "bold"
+                      "fontSize": "24px",
+                      "color": "#111218"
                     }
                   }
                 ]

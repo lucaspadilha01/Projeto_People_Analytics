@@ -3,17 +3,17 @@
   "name": "kpiContratacoes",
   "position": {
     "x": 1266,
-    "y": 160,
-    "z": 7000,
-    "height": 100,
+    "y": 146.93023255813955,
+    "z": 10000,
+    "height": 125,
     "width": 300,
-    "tabOrder": 7
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "card",
     "query": {
       "queryState": {
-        "Values": {
+        "Tooltips": {
           "projections": [
             {
               "field": {
@@ -31,7 +31,7 @@
             }
           ]
         },
-        "Tooltips": {
+        "Values": {
           "projections": [
             {
               "field": {

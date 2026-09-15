@@ -4,5 +4,11 @@
   "displayName": "Visão Geral",
   "displayOption": "FitToPage",
   "height": 1080,
-  "width": 1920
+  "width": 1920,
+  "pageBinding": {
+    "name": "09ec1a6234b74b180a5c",
+    "type": "Default",
+    "parameters": [],
+    "referenceScope": "CrossReport"
+  }
 }

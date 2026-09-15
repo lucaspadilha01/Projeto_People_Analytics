@@ -2,18 +2,18 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "matrizDriversRetenção",
   "position": {
-    "x": 650,
-    "y": 500,
-    "z": 2000,
+    "x": 648,
+    "y": 499.81395348837208,
+    "z": 6000,
     "height": 340,
     "width": 624,
-    "tabOrder": 14
+    "tabOrder": 7000
   },
   "visual": {
-    "visualType": "table",
+    "visualType": "treemap",
     "query": {
       "queryState": {
-        "Rows": {
+        "Group": {
           "projections": [
             {
               "field": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Funcionarios.Escolaridade",
-              "nativeQueryRef": "Escolaridade"
+              "nativeQueryRef": "Escolaridade",
+              "active": true
             }
           ]
         },
@@ -49,26 +50,10 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
       }
-    },
-    "objects": {
-      "grid": [
-        {
-          "properties": {
-            "outlineColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#EAEAEC'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ]
     },
     "visualContainerObjects": {
       "title": [
