@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "insightTile2",
+  "position": {
+    "x": 336,
+    "y": 960,
+    "z": 100,
+    "height": 50,
+    "width": 302,
+    "tabOrder": 14
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "📈 ",
+                    "textStyle": {
+                      "fontSize": "12px",
+                      "fontFamily": "Inter"
+                    }
+                  },
+                  {
+                    "value": "Contratações vs Demissões",
+                    "textStyle": {
+                      "fontSize": "12px",
+                      "fontFamily": "Inter",
+                      "color": "#111218",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Saldo positivo de 23 pessoas no período",
+                    "textStyle": {
+                      "fontSize": "11px",
+                      "fontFamily": "Inter",
+                      "color": "#71727C"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
