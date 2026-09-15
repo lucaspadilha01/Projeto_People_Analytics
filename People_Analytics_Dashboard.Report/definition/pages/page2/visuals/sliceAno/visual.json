@@ -44,13 +44,6 @@
                   "Value": "true"
                 }
               }
-            },
-            "type": {
-              "expr": {
-                "Literal": {
-                  "Value": "'List'"
-                }
-              }
             }
           }
         }
