@@ -3,7 +3,7 @@
   "name": "sliceMes",
   "position": {
     "x": 1460,
-    "y": 78,
+    "y": 75,
     "z": 6000,
     "height": 40,
     "width": 420,
@@ -44,6 +44,13 @@
                   "Value": "true"
                 }
               }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
             }
           }
         }
@@ -71,37 +78,6 @@
                   "Value": "11D"
                 }
               }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#71727C'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "items": [
-        {
-          "properties": {
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Inter'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "12D"
-                }
-              }
             }
           }
         }
@@ -114,7 +90,14 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Mês'"
                 }
               }
             }
