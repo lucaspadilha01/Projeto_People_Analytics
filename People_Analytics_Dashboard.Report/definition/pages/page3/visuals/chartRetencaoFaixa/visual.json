@@ -10,7 +10,7 @@
     "tabOrder": 11
   },
   "visual": {
-    "visualType": "stackedBarChart",
+    "visualType": "barChart",
     "query": {
       "queryState": {
         "Category": {
