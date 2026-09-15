@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "tabelaLeque",
   "position": {
-    "x": 38.930232558139537,
-    "y": 807.48837209302326,
+    "x": 38,
+    "y": 1120,
     "z": 2000,
-    "height": 264.97674418604652,
-    "width": 1881.2093023255813,
-    "tabOrder": 14
+    "height": 300,
+    "width": 1922,
+    "tabOrder": 7
   },
   "visual": {
     "visualType": "table",
@@ -36,30 +36,63 @@
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
                       "Entity": "Funcionarios"
                     }
                   },
-                  "Property": "Min Salário"
+                  "Property": "Cargo"
                 }
               },
-              "queryRef": "Funcionarios.Min Salário",
-              "nativeQueryRef": "Min Salário"
+              "queryRef": "Funcionarios.Cargo",
+              "nativeQueryRef": "Cargo"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Funcionarios"
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Min Salário"
+                }
+              },
+              "queryRef": "_Medidas.Min Salário",
+              "nativeQueryRef": "Min Salário"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Funcionarios"
+                        }
+                      },
+                      "Property": "Valor Salário"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Funcionarios.Valor Salário)",
+              "nativeQueryRef": "Soma de Valor Salário"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
                     }
                   },
                   "Property": "Max Salário"
                 }
               },
-              "queryRef": "Funcionarios.Max Salário",
+              "queryRef": "_Medidas.Max Salário",
               "nativeQueryRef": "Max Salário"
             }
           ]
@@ -117,7 +150,26 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "e8dadbdb179dbadbba11",
+        "name": "0f8cb136a63ba7a85470",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Funcionarios"
+                  }
+                },
+                "Property": "Valor Salário"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d5ce2071171a65569da5",
         "field": {
           "Column": {
             "Expression": {
@@ -129,6 +181,34 @@
           }
         },
         "type": "Categorical"
+      },
+      {
+        "name": "74730e7e4a82e099610c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Min Salário"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2481511c578b57dd26d0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Max Salário"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

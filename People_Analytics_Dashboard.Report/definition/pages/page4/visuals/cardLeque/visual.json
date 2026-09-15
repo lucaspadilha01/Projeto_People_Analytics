@@ -1,37 +1,18 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "cardTecnicidade",
+  "name": "cardLeque",
   "position": {
-    "x": 1050,
-    "y": 140,
-    "z": 5000,
-    "height": 300,
-    "width": 910,
-    "tabOrder": 2
+    "x": 38,
+    "y": 800,
+    "z": 7000,
+    "height": 260,
+    "width": 980,
+    "tabOrder": 5
   },
   "visual": {
-    "visualType": "donutChart",
+    "visualType": "card",
     "query": {
       "queryState": {
-        "Legend": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Medidas"
-                    }
-                  },
-                  "Property": "Índice de Tecnicidade"
-                }
-              },
-              "queryRef": "_Medidas.Índice de Tecnicidade",
-              "nativeQueryRef": "Índice de Tecnicidade",
-              "active": true
-            }
-          ]
-        },
         "Values": {
           "projections": [
             {
@@ -42,21 +23,59 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "Headcount"
+                  "Property": "Leque Salarial"
                 }
               },
-              "queryRef": "_Medidas.Headcount",
-              "nativeQueryRef": "Headcount"
+              "queryRef": "_Medidas.Leque Salarial",
+              "nativeQueryRef": "Leque Salarial"
             }
           ]
         }
       }
     },
     "objects": {
-      "dataPoint": [
+      "categoryLabels": [
         {
           "properties": {
-            "fill": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Inter'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#71727C'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "color": {
               "solid": {
                 "color": {
                   "expr": {
@@ -66,19 +85,18 @@
                   }
                 }
               }
-            }
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#CFC4EC'"
-                    }
-                  }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "48D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Inter'"
                 }
               }
             }
@@ -100,7 +118,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Índice de Tecnicidade'"
+                  "Value": "'Leque Salarial'"
                 }
               }
             }

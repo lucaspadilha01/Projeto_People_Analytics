@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "chartHoras",
   "position": {
-    "x": 826.32558139534888,
-    "y": 126.83720930232559,
+    "x": 38,
+    "y": 470,
     "z": 2000,
-    "height": 336.55813953488371,
-    "width": 1083.7674418604652,
-    "tabOrder": 5000
+    "height": 300,
+    "width": 980,
+    "tabOrder": 3
   },
   "visual": {
     "visualType": "clusteredColumnChart",
