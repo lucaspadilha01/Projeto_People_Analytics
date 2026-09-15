@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "tabelaLeque",
   "position": {
-    "x": 1640,
-    "y": 496,
+    "x": 38.930232558139537,
+    "y": 807.48837209302326,
     "z": 2000,
-    "height": 300,
-    "width": 560,
+    "height": 264.97674418604652,
+    "width": 1881.2093023255813,
     "tabOrder": 14
   },
   "visual": {
@@ -87,15 +87,7 @@
     "objects": {
       "general": [
         {
-          "properties": {
-            "outlineWeight": {
-              "expr": {
-                "Literal": {
-                  "Value": "1"
-                }
-              }
-            }
-          }
+          "properties": {}
         }
       ]
     },
@@ -121,5 +113,23 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e8dadbdb179dbadbba11",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Funcionarios"
+              }
+            },
+            "Property": "Cargo"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

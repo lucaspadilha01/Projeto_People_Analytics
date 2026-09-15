@@ -87,15 +87,7 @@
     "objects": {
       "general": [
         {
-          "properties": {
-            "outlineWeight": {
-              "expr": {
-                "Literal": {
-                  "Value": "1"
-                }
-              }
-            }
-          }
+          "properties": {}
         }
       ]
     },
@@ -121,5 +113,23 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1b02e8c6abaab13707e6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Absenteísmo"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

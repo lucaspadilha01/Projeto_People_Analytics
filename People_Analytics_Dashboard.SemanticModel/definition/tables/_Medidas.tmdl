@@ -216,6 +216,34 @@ table _Medidas
 		formatString: #,0.00
 		lineageTag: e1e1a001-0000-4a00-9000-000000000024
 
+	measure 'Min Salário' =
+			VAR DataFinal = MAX('Calendario'[Date])
+			RETURN
+			    MINX(
+			        FILTER(
+			            'Funcionarios',
+			            'Funcionarios'[Data Admissão] <= DataFinal
+			                && (ISBLANK('Funcionarios'[Data Afastamento]) || 'Funcionarios'[Data Afastamento] > DataFinal)
+			        ),
+			        'Funcionarios'[Valor Salário]
+			    )
+		formatString: #,0.00
+		lineageTag: e1e1a001-0000-4a00-9000-000000000025
+
+	measure 'Max Salário' =
+			VAR DataFinal = MAX('Calendario'[Date])
+			RETURN
+			    MAXX(
+			        FILTER(
+			            'Funcionarios',
+			            'Funcionarios'[Data Admissão] <= DataFinal
+			                && (ISBLANK('Funcionarios'[Data Afastamento]) || 'Funcionarios'[Data Afastamento] > DataFinal)
+			        ),
+			        'Funcionarios'[Valor Salário]
+			    )
+		formatString: #,0.00
+		lineageTag: e1e1a001-0000-4a00-9000-000000000026
+
 	column Medidas
 		lineageTag: 1af547a2-6025-46db-b057-0e1750dddd8b
 		isNameInferred
