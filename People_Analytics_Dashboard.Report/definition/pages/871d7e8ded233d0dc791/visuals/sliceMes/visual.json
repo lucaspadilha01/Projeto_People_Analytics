@@ -23,11 +23,11 @@
                       "Entity": "Calendario"
                     }
                   },
-                  "Property": "Mês Completo"
+                  "Property": "Mês"
                 }
               },
-              "queryRef": "Calendario.Mês Completo",
-              "nativeQueryRef": "Mês Completo",
+              "queryRef": "Calendario.Mês",
+              "nativeQueryRef": "Mês",
               "active": true
             }
           ]

@@ -3,10 +3,10 @@
   "name": "chartHeadcount",
   "position": {
     "x": 26,
-    "y": 250,
+    "y": 230,
     "z": 0,
-    "height": 380,
-    "width": 1242,
+    "height": 400,
+    "width": 1240,
     "tabOrder": 9
   },
   "visual": {
